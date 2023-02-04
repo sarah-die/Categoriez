@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Grid2 from "@mui/material/Unstable_Grid2";
+import { Box, Typography } from "@mui/material";
+import { AccordionNewGame } from "./components/AccordionNewGame";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: "background.paper",
+      }}
+    >
+      <Grid2 container>
+        <Grid2 container xs={12} textAlign="center">
+          <Grid2 xs={12} md={6} xl={4}>
+            <Typography mt={3} variant={"h1"}>
+              Categoriez
+            </Typography>
+          </Grid2>
+        </Grid2>
+        <Grid2 xs={12} m={12}>
+          <AccordionNewGame></AccordionNewGame>
+        </Grid2>
+      </Grid2>
+    </Box>
   );
 }
 
