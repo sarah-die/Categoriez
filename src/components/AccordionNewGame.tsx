@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionActions,
   AccordionDetails,
+  AccordionProps,
   AccordionSummary,
   Button,
   FormControl,
@@ -14,8 +15,12 @@ import {
 } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-export const AccordionNewGame = () => {
+export const AccordionNewGame = (props: {
+  expanded: boolean;
+  onChange: AccordionProps["onChange"];
+}) => {
   const [players, setPlayers] = useState<string[]>(new Array(3).fill(""));
 
   // places text-fields to enter player names dependent on the number of players.
@@ -33,14 +38,13 @@ export const AccordionNewGame = () => {
   };
 
   return (
-    <Accordion sx={{ backgroundColor: "primary.dark" }}>
+    <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
       <AccordionSummary
-        // ToDo
-        // expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography variant={"h4"}>Click to play</Typography>
+        <Typography variant={"h4"}>Start a new Game</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography variant={"body1"} sx={{ mb: 3 }}>
@@ -88,6 +92,7 @@ export const AccordionNewGame = () => {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
+          // onClick={} ToDo
         >
           Start game
         </Button>

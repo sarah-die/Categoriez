@@ -1,8 +1,11 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Box, Typography } from "@mui/material";
-import { AccordionNewGame } from "./components/AccordionNewGame";
+import { useState } from "react";
+import ControlledAccordion from "./components/ControlledAccordion";
 
 function App() {
+  const [accStatus, setAccStatus] = useState<number>(0);
+
   return (
     <Box
       sx={{
@@ -19,8 +22,8 @@ function App() {
             </Typography>
           </Grid2>
         </Grid2>
-        <Grid2 xs={12} m={12}>
-          <AccordionNewGame></AccordionNewGame>
+        <Grid2 xs={12} mt={6} ml={12} mr={12}>
+          <ControlledAccordion></ControlledAccordion>
         </Grid2>
       </Grid2>
     </Box>
