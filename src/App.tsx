@@ -1,31 +1,23 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { Box, Typography } from "@mui/material";
-import { useState } from "react";
+import { Box } from "@mui/material";
 import ControlledAccordion from "./components/ControlledAccordion";
 
 function App() {
-  const [accStatus, setAccStatus] = useState<number>(0);
-
   return (
     <Box
       sx={{
         height: "100vh",
         width: "100vw",
+        overflowY: "scroll",
         backgroundColor: "background.paper",
       }}
     >
       <Grid2 container>
-        <Grid2 container xs={12} textAlign="center">
-          <Grid2 xs={12} md={6} xl={4}>
-            <Typography mt={3} variant={"h1"}>
-              Categoriez
-            </Typography>
-          </Grid2>
-        </Grid2>
-        <Grid2 xs={12} mt={6} ml={12} mr={12}>
+        <Grid2 xs={12} m={{ xs: 2, md: 9 }}>
           <ControlledAccordion></ControlledAccordion>
         </Grid2>
       </Grid2>
+      <Box p={4}></Box>
     </Box>
   );
 }

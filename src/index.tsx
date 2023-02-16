@@ -6,9 +6,11 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { mainTheme } from "./mainTheme";
 import '@fontsource/ibm-plex-sans/300.css';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Root from "./routes/root";
-import ResponsiveAppBar from "./ResponsiveAppBar";
-import IndexRoute from "./routes/indexRoute";
+import RootAppBar from "./routes/rootAppBar";
+import NewGame from "./routes/newGame";
+import Categoriez from "./routes/categoriez";
+import RuleBook from "./routes/ruleBook";
+import About from "./routes/about";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,7 +19,7 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <ResponsiveAppBar/>,
+        element: <RootAppBar/>,
         children: [
             {
                 // errorElement: <BasicError />,
@@ -26,10 +28,21 @@ const router = createBrowserRouter([
                       index: true, element: <App/>
                     },
                     {
-                        path: "newGame/:gameID",
+                        path: "ruleBook",
+                        element: <RuleBook/>,
+                    },
+                    // ToDo: Add /:gameID
+                    {
+                        path: "newGame",
+                        element: <NewGame/>,
                     },
                     {
-                        path: "categoriez"
+                        path: "categoriez",
+                        element: <Categoriez/>,
+                    },
+                    {
+                        path: "about",
+                        element: <About/>,
                     }
                 ]
             }

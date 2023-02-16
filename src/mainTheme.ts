@@ -13,7 +13,7 @@ let theme = createTheme({
     secondary: {
       light: "#c77ecf",
       main: "#9c5bbf",
-      dark: "#8348b4",
+      dark: "#31114d",
     },
   },
   typography: {
@@ -23,11 +23,19 @@ let theme = createTheme({
 theme = createTheme(theme, {
   typography: {
     h1: {
-      color: theme.palette.secondary.light,
+      color: theme.palette.secondary.main,
       fontWeight: "bold",
     },
     h4: {
       color: "black",
+      fontWeight: "bold",
+    },
+    h5: {
+      color: theme.palette.secondary.main,
+      fontWeight: "bold",
+    },
+    h6: {
+      color: theme.palette.secondary.light,
       fontWeight: "bold",
     },
     body1: {
