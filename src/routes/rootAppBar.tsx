@@ -28,25 +28,16 @@ export default function RootAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
   };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
   return (
     <AppBar sx={{ backgroundColor: "primary.light" }}>
       {/*sm is necessary to override the default media query padding of MUI*/}
-      <Container maxWidth={false} sx={{ px: { sm: 9 } }}>
+      <Container maxWidth={false} sx={{ px: { md: 9 } }}>
         <Toolbar disableGutters>
           <>
             <Typography
