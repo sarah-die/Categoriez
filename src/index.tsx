@@ -33,7 +33,7 @@ const router = createBrowserRouter([
                     },
                     // ToDo: Add /:gameID
                     {
-                        path: "newGame",
+                        path: "inGame",
                         element: <InGame/>,
                     },
                     {

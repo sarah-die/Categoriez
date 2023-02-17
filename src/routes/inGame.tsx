@@ -1,26 +1,16 @@
-import { Box } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { GameProvider, useGameContext } from "../Context";
 import StartGame from "../components/inGameComponents/StartGame";
-import HiddenCategory from "../components/inGameComponents/HiddenCategory";
+import ShowCategory from "../components/inGameComponents/ShowCategory";
 import CreateWords from "../components/inGameComponents/CreateWords";
 import Reveal from "../components/inGameComponents/Reveal";
 
 export default function InGame() {
   return (
     <GameProvider>
-      <Box
-        sx={{
-          height: "100vh",
-          width: "100vw",
-          overflowY: "scroll",
-          backgroundColor: "background.paper",
-        }}
-      >
-        <Grid2 container>
-          <InnerInGame />
-        </Grid2>
-      </Box>
+      <Grid2 container>
+        <InnerInGame />
+      </Grid2>
     </GameProvider>
   );
 }
@@ -31,7 +21,7 @@ const InnerInGame = () => {
   if (ctx.currentGameStatus === "start") {
     return <StartGame />;
   } else if (ctx.currentGameStatus === "hiddenCategory") {
-    return <HiddenCategory />;
+    return <ShowCategory />;
   } else if (ctx.currentGameStatus === "createWords") {
     return <CreateWords />;
   } else {

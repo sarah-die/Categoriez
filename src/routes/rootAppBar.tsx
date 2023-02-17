@@ -11,19 +11,20 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Outlet, useNavigation } from "react-router-dom";
+import {Outlet, useNavigate, useNavigation} from "react-router-dom";
 
 type Page = { label: string; href: string };
 
 const pages: Page[] = [
   { label: "Rule Book", href: "/ruleBook" },
-  { label: "New Game", href: "/newGame" },
+  { label: "New Game", href: "/inGame" },
   { label: "Categoriez", href: "/categoriez" },
   { label: "About", href: "/about" },
 ];
 
 export default function RootAppBar() {
   const navigation = useNavigation();
+  const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -31,15 +32,25 @@ export default function RootAppBar() {
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (href: string) => () => {
     setAnchorElNav(null);
+    navigate(href)
   };
   return (
-    <AppBar sx={{ backgroundColor: "primary.light" }}>
-      {/*sm is necessary to override the default media query padding of MUI*/}
-      <Container maxWidth={false} sx={{ px: { md: 9 } }}>
-        <Toolbar disableGutters>
-          <>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        overflowY: "auto",
+        overflowX: "hidden",
+      }}
+    >
+      <AppBar sx={{ backgroundColor: "primary.light" }}>
+        {/*sm is necessary to override the default media query padding of MUI*/}
+        <Container maxWidth={false} sx={{ px: { md: 9 } }}>
+          <Toolbar disableGutters>
             <Typography
               variant="h4"
               noWrap
@@ -90,9 +101,8 @@ export default function RootAppBar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {/*ToDo: Add link*/}
                 {pages.map((page) => (
-                  <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                  <MenuItem key={page.label} onClick={handleCloseNavMenu(page.href)}>
                     <Typography textAlign="center" variant={"h6"}>
                       {page.label}
                     </Typography>
@@ -100,31 +110,39 @@ export default function RootAppBar() {
                 ))}
               </Menu>
             </Box>
-          </>
 
-          <Box
-            id={"AppBar ButtonGroup"}
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "flex-end",
-            }}
-          >
-            {pages.map((page) => (
-              <Button
-                key={page.label}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "inherit", display: "block" }}
-                size={"large"}
-                href={page.href}
-              >
-                {page.label}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </Container>
-      <Outlet />
-    </AppBar>
+            <Box
+              id={"AppBar ButtonGroup"}
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+              }}
+            >
+              {pages.map((page) => (
+                <Button
+                  key={page.label}
+                  sx={{ my: 2, color: "inherit", display: "block" }}
+                  size={"large"}
+                  href={page.href}
+                >
+                  {page.label}
+                </Button>
+              ))}
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Box
+        sx={{
+          flex: 1,
+          pt: 10,
+          backgroundColor: "background.paper",
+          overflowX: "none",
+        }}
+      >
+        <Outlet />
+      </Box>
+    </Box>
   );
 }

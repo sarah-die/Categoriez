@@ -16,11 +16,14 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {useGameContext} from "../Context";
 
 export const AccordionNewGame = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];
 }) => {
+  // ToDo use context for current players
+  const ctx = useGameContext();
   const [players, setPlayers] = useState<string[]>(new Array(3).fill(""));
 
   // places text-fields to enter player names dependent on the number of players.
@@ -93,6 +96,7 @@ export const AccordionNewGame = (props: {
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
           // onClick={} ToDo
+            href={"/inGame"}
         >
           Start game
         </Button>
