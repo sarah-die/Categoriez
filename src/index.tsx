@@ -7,7 +7,7 @@ import { mainTheme } from "./mainTheme";
 import '@fontsource/ibm-plex-sans/300.css';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import RootAppBar from "./routes/rootAppBar";
-import NewGame from "./routes/newGame";
+import InGame from "./routes/inGame";
 import Categoriez from "./routes/categoriez";
 import RuleBook from "./routes/ruleBook";
 import About from "./routes/about";
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
                     // ToDo: Add /:gameID
                     {
                         path: "newGame",
-                        element: <NewGame/>,
+                        element: <InGame/>,
                     },
                     {
                         path: "categoriez",

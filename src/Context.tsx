@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, {createContext, useContext, useState} from "react";
 
 // globally available props
 type contextType = {
@@ -28,3 +28,5 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
     </Context.Provider>
   );
 };
+
+export const useGameContext = () => useContext(Context);
