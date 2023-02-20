@@ -15,7 +15,7 @@ export default function CreateWords() {
       flexDirection={"column"}
     >
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        You now have time to create some krazy wordz. Click the button below
+        You now have time to create your krazy wordz. Click the button below
         when all players are finished.
       </Typography>
       <Grid2 container justifyContent={"center"}>

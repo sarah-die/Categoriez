@@ -68,25 +68,20 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
         Tap here to pass the turn onto the next player.
       </Typography>
       <Grid2 container justifyContent={"center"}>
-        {props.cur === ctx.currentPlayers.length - 1 ? (
-          <Button
-            variant={"contained"}
-            size={"large"}
-            sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
-            onClick={() => ctx.setGameStatus("createWords")}
-          >
-            Let's create some Krazy Wordz
-          </Button>
-        ) : (
-          <Button
-            variant={"contained"}
-            size={"large"}
-            sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
-            onClick={() => props.nextPlayer("hidden")}
-          >
-            Next Player
-          </Button>
-        )}
+        <Button
+          variant={"contained"}
+          size={"large"}
+          sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
+          onClick={() =>
+            props.cur === ctx.currentPlayers.length - 1
+              ? ctx.setGameStatus("createWords")
+              : props.nextPlayer("hidden")
+          }
+        >
+          {props.cur === ctx.currentPlayers.length - 1
+            ? "Let's create some Krazy Wordz"
+            : "Next Player"}
+        </Button>
       </Grid2>
     </Grid2>
   );
