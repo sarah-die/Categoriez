@@ -11,11 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  Outlet,
-  useNavigate,
-  Link as RouterLink,
-} from "react-router-dom";
+import { Outlet, useNavigate, Link as RouterLink } from "react-router-dom";
 import { Link } from "../components/utils/Link";
 
 type Page = { label: string; href: string };

@@ -95,7 +95,6 @@ export const AccordionNewGame = (props: {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
-          // onClick={} ToDo
           component={Link}
           to={"/inGame"}
         >

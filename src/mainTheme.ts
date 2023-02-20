@@ -18,6 +18,7 @@ let theme = createTheme({
   },
   typography: {
     fontFamily: "IBM Plex Sans",
+  // ToDo add primary/ secondary colors
   },
 });
 theme = createTheme(theme, {
@@ -42,6 +43,11 @@ theme = createTheme(theme, {
       color: theme.palette.primary.light,
       fontSize: 22,
     },
+    body2: {
+      color: theme.palette.primary.light,
+      fontSize: 28,
+      fontWeight: "bold",
+    }
   },
   button: {
     contained: {

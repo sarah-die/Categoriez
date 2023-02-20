@@ -4,18 +4,27 @@ import { useState } from "react";
 import { Button, Typography } from "@mui/material";
 
 type CatStatus = "hidden" | "shown";
-const cur = 0;
+let cur: number = 0;
 
 export default function ShowCategory() {
-  const ctx = useGameContext();
   const [catStatus, setCatStatus] = useState<CatStatus>("hidden");
-  const props = { catStatus, setCatStatus };
+
+  const nextPlayer = (next: CatStatus) => {
+    if (next === "shown") {
+      setCatStatus("shown");
+    } else {
+      setCatStatus("hidden");
+      cur++;
+    }
+  };
+  const props = { nextPlayer, cur };
   return (
     <Grid2
       container
       rowSpacing={1}
       xs={12}
       m={{ xs: 2, md: 9 }}
+      p={4}
       sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
       flexDirection={"column"}
     >
@@ -24,57 +33,60 @@ export default function ShowCategory() {
   );
 }
 
-function Hidden(props: {
-  catStatus: CatStatus;
-  setCatStatus: (status: CatStatus) => void;
-}) {
+function Hidden(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
   const ctx = useGameContext();
-  // ToDo ctx
   return (
-    <Grid2>
-      <Grid2>
-        <Typography>
-          Hey {ctx.currentPlayers[cur]}, are you ready for your catgeory?
-        </Typography>
-      </Grid2>
-      <Grid2>
+    <Grid2 container flexDirection={"column"}>
+      <Typography color={"inherit"} variant={"body1"} my={1}>
+        Hey {ctx.currentPlayers[props.cur]}, are you ready for your categeory?
+      </Typography>
+      <Grid2 container justifyContent={"center"}>
         <Button
           variant={"contained"}
           size={"large"}
-          sx={{ height: 50, fontSize: 22, mx: 2, my: 1, color: "black" }}
-          onClick={() => props.setCatStatus("shown")}
+          sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
+          onClick={() => props.nextPlayer("shown")}
         >
-          Show category!
+          Show category
         </Button>
       </Grid2>
     </Grid2>
   );
 }
 
-function Shown(props: {
-  catStatus: CatStatus;
-  setCatStatus: (status: CatStatus) => void;
-}) {
+function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
   const ctx = useGameContext();
-  // ToDo ctx
   return (
-    <Grid2>
-      <Grid2>
-        <Typography> Your Category:</Typography>
-      </Grid2>
-      <Grid2>
-        <Typography>Tap here to pass the turn onto the next player.</Typography>
-      </Grid2>
-      <Grid2>
-        <Button
-          variant={"contained"}
-          size={"large"}
-          sx={{ height: 50, fontSize: 22, mx: 2, my: 1, color: "black" }}
-          onClick={() => props.setCatStatus("hidden")}
-          // ToDo cur++
-        >
-          Next Player!
-        </Button>
+    <Grid2 container flexDirection={"column"}>
+      <Typography color={"inherit"} variant={"body1"} my={1}>
+        Your Category is:
+      </Typography>
+      <Typography color={"inherit"} variant={"body2"} my={1}>
+        CATEGORY
+      </Typography>
+      <Typography color={"inherit"} variant={"body1"} my={1}>
+        Tap here to pass the turn onto the next player.
+      </Typography>
+      <Grid2 container justifyContent={"center"}>
+        {props.cur === ctx.currentPlayers.length - 1 ? (
+          <Button
+            variant={"contained"}
+            size={"large"}
+            sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
+            onClick={() => ctx.setGameStatus("createWords")}
+          >
+            Let's create some Krazy Wordz
+          </Button>
+        ) : (
+          <Button
+            variant={"contained"}
+            size={"large"}
+            sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
+            onClick={() => props.nextPlayer("hidden")}
+          >
+            Next Player
+          </Button>
+        )}
       </Grid2>
     </Grid2>
   );
