@@ -11,7 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import {Outlet, useNavigate, useNavigation} from "react-router-dom";
+import {
+  Outlet,
+  useNavigate,
+  Link as RouterLink,
+} from "react-router-dom";
+import { Link } from "../components/utils/Link";
 
 type Page = { label: string; href: string };
 
@@ -23,7 +28,6 @@ const pages: Page[] = [
 ];
 
 export default function RootAppBar() {
-  const navigation = useNavigation();
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -34,7 +38,7 @@ export default function RootAppBar() {
   };
   const handleCloseNavMenu = (href: string) => () => {
     setAnchorElNav(null);
-    navigate(href)
+    navigate(href);
   };
   return (
     <Box
@@ -51,21 +55,22 @@ export default function RootAppBar() {
         {/*sm is necessary to override the default media query padding of MUI*/}
         <Container maxWidth={false} sx={{ px: { md: 9 } }}>
           <Toolbar disableGutters>
-            <Typography
-              variant="h4"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                display: { xs: "flex" },
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              CATEGORIEZ
-            </Typography>
+            <Link to="/">
+              <Typography
+                variant="h4"
+                noWrap
+                component="a"
+                sx={{
+                  display: { xs: "flex" },
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                CATEGORIEZ
+              </Typography>
+            </Link>
             <Box
               sx={{
                 flexGrow: 1,
@@ -102,7 +107,10 @@ export default function RootAppBar() {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page.label} onClick={handleCloseNavMenu(page.href)}>
+                  <MenuItem
+                    key={page.label}
+                    onClick={handleCloseNavMenu(page.href)}
+                  >
                     <Typography textAlign="center" variant={"h6"}>
                       {page.label}
                     </Typography>
@@ -124,7 +132,8 @@ export default function RootAppBar() {
                   key={page.label}
                   sx={{ my: 2, color: "inherit", display: "block" }}
                   size={"large"}
-                  href={page.href}
+                  component={RouterLink}
+                  to={page.href}
                 >
                   {page.label}
                 </Button>

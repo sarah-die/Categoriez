@@ -22,6 +22,7 @@ export default function StartGame() {
         {ctx.currentPlayers.map((p, i) => {
           return (
             <Typography
+              key={i}
               my={3}
               border={1}
               borderColor={"black"}

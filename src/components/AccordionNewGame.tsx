@@ -13,29 +13,29 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {useGameContext} from "../Context";
+import { useGameContext } from "../Context";
+import { Link } from "react-router-dom";
 
 export const AccordionNewGame = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];
 }) => {
   // ToDo use context for current players
-  const ctx = useGameContext();
-  const [players, setPlayers] = useState<string[]>(new Array(3).fill(""));
+  const { currentPlayers, setPlayers } = useGameContext();
 
   // places text-fields to enter player names dependent on the number of players.
   // makes sure existing players are preserved when number of players is changed
   const placeNameFields = (e: SelectChangeEvent) => {
-    const newPlayers = [...players, ...new Array(5).fill("")];
+    const newPlayers = [...currentPlayers, ...new Array(5).fill("")];
     setPlayers(newPlayers.slice(0, Number(e.target.value)));
   };
 
   // adds the new name of a player to the existing list of players
   const setPlayerNames = (i: number) => (e: ChangeEvent<HTMLInputElement>) => {
-    const newPlayers = [...players];
+    const newPlayers = [...currentPlayers];
     newPlayers[i] = e.target.value;
     setPlayers(newPlayers);
   };
@@ -56,7 +56,7 @@ export const AccordionNewGame = (props: {
         <FormControl>
           <InputLabel>Player</InputLabel>
           <Select
-            value={players.length.toString()}
+            value={currentPlayers.length.toString()}
             label="Player"
             onChange={placeNameFields}
           >
@@ -69,21 +69,21 @@ export const AccordionNewGame = (props: {
           </Select>
         </FormControl>
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
-          Set names for {players.length} Players:
+          Set names for {currentPlayers.length} Players:
         </Typography>
         <Grid2
           container
           // spacing={9}
           // justifyContent={"flex-start"}
         >
-          {players.map((p, i) => {
+          {currentPlayers.map((p, i) => {
             return (
               <TextField
                 required
                 label="Name"
                 placeholder={"Player " + (i + 1)}
                 sx={{ mr: 3, mb: 3 }}
-                value={players[i]}
+                value={currentPlayers[i]}
                 onChange={setPlayerNames(i)}
               ></TextField>
             );
@@ -96,7 +96,8 @@ export const AccordionNewGame = (props: {
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
           // onClick={} ToDo
-            href={"/inGame"}
+          component={Link}
+          to={"/inGame"}
         >
           Start game
         </Button>
