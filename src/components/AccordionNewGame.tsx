@@ -39,6 +39,11 @@ export const AccordionNewGame = (props: {
     ctx.setPlayers(newPlayers);
   };
 
+  const setStatus = () => {
+    ctx.setGameStatus("ongoing");
+    ctx.setInGameStatus("start");
+  };
+
   return (
     <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
       <AccordionSummary
@@ -70,10 +75,7 @@ export const AccordionNewGame = (props: {
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
           Set names for {ctx.currentPlayers.length} Players:
         </Typography>
-        <Grid2
-          container
-          p={2}
-        >
+        <Grid2 container p={2}>
           {ctx.currentPlayers.map((p, i) => {
             return (
               <TextField
@@ -89,14 +91,15 @@ export const AccordionNewGame = (props: {
         </Grid2>
       </AccordionDetails>
       <AccordionActions>
-        {/*ToDo wenn ein neues Spiel gestartet wird, muss der inGameStatus zurückgesetzt werden*/}
         <Button
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
           component={Link}
           to={"/inGame"}
-          onClick={() => {ctx.setGameStatus("ongoing")}}
+          onClick={() => {
+            setStatus();
+          }}
         >
           Start game
         </Button>
