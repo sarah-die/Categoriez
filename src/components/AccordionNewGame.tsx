@@ -23,20 +23,20 @@ export const AccordionNewGame = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];
 }) => {
-  const { currentPlayers, setPlayers } = useGameContext();
+  const ctx = useGameContext();
 
   // places text-fields to enter player names dependent on the number of players.
   // makes sure existing players are preserved when number of players is changed
   const placeNameFields = (e: SelectChangeEvent) => {
-    const newPlayers = [...currentPlayers, ...new Array(5).fill("")];
-    setPlayers(newPlayers.slice(0, Number(e.target.value)));
+    const newPlayers = [...ctx.currentPlayers, ...new Array(5).fill("")];
+    ctx.setPlayers(newPlayers.slice(0, Number(e.target.value)));
   };
 
   // adds the new name of a player to the existing list of players
   const setPlayerNames = (i: number) => (e: ChangeEvent<HTMLInputElement>) => {
-    const newPlayers = [...currentPlayers];
+    const newPlayers = [...ctx.currentPlayers];
     newPlayers[i] = e.target.value;
-    setPlayers(newPlayers);
+    ctx.setPlayers(newPlayers);
   };
 
   return (
@@ -55,7 +55,7 @@ export const AccordionNewGame = (props: {
         <FormControl>
           <InputLabel>Player</InputLabel>
           <Select
-            value={currentPlayers.length.toString()}
+            value={ctx.currentPlayers.length.toString()}
             label="Player"
             onChange={placeNameFields}
           >
@@ -68,21 +68,20 @@ export const AccordionNewGame = (props: {
           </Select>
         </FormControl>
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
-          Set names for {currentPlayers.length} Players:
+          Set names for {ctx.currentPlayers.length} Players:
         </Typography>
         <Grid2
           container
-          // spacing={9}
-          // justifyContent={"flex-start"}
+          p={2}
         >
-          {currentPlayers.map((p, i) => {
+          {ctx.currentPlayers.map((p, i) => {
             return (
               <TextField
                 required
                 label="Name"
                 placeholder={"Player " + (i + 1)}
                 sx={{ mr: 3, mb: 3 }}
-                value={currentPlayers[i]}
+                value={ctx.currentPlayers[i]}
                 onChange={setPlayerNames(i)}
               ></TextField>
             );
@@ -96,6 +95,7 @@ export const AccordionNewGame = (props: {
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
           component={Link}
           to={"/inGame"}
+          onClick={() => {ctx.setGameStatus("ongoing")}}
         >
           Start game
         </Button>
