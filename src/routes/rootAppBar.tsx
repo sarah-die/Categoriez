@@ -19,7 +19,6 @@ type Page = { label: string; href: string };
 
 const pages: Page[] = [
   { label: "Rule Book", href: "/ruleBook" },
-  { label: "New Game", href: "/inGame" },
   { label: "Categoriez", href: "/categoriez" },
   { label: "About", href: "/about" },
 ];
