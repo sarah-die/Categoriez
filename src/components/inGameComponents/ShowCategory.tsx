@@ -17,6 +17,7 @@ export default function ShowCategory() {
       cur++;
     }
   };
+
   const props = { nextPlayer, cur };
   return (
     <Grid2
@@ -56,6 +57,10 @@ function Hidden(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
 
 function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
   const ctx = useGameContext();
+  const changeGameStatus = () => {
+    cur = 0;
+    ctx.setGameStatus("createWords");
+  };
   return (
     <Grid2 container flexDirection={"column"}>
       <Typography color={"inherit"} variant={"body1"} my={1}>
@@ -74,7 +79,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
           sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
           onClick={() =>
             props.cur === ctx.currentPlayers.length - 1
-              ? ctx.setGameStatus("createWords")
+              ? changeGameStatus()
               : props.nextPlayer("hidden")
           }
         >
