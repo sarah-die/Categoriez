@@ -69,9 +69,13 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
       <Typography color={"inherit"} variant={"body2"} my={1}>
         CATEGORY
       </Typography>
-      <Typography color={"inherit"} variant={"body1"} my={1}>
-        Tap here to pass the turn onto the next player.
-      </Typography>
+      {props.cur === ctx.currentPlayers.length - 1 ? (
+        <></>
+      ) : (
+        <Typography color={"inherit"} variant={"body1"} my={1}>
+          Tap here to pass the turn onto the next player.
+        </Typography>
+      )}
       <Grid2 container justifyContent={"center"}>
         <Button
           variant={"contained"}

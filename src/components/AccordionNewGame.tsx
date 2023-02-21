@@ -89,6 +89,7 @@ export const AccordionNewGame = (props: {
         </Grid2>
       </AccordionDetails>
       <AccordionActions>
+        {/*ToDo wenn ein neues Spiel gestartet wird, muss der inGameStatus zurückgesetzt werden*/}
         <Button
           variant={"contained"}
           size={"large"}
