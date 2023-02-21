@@ -50,7 +50,7 @@ export default function StartGame() {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
-          onClick={() => ctx.setGameStatus("hiddenCategory")}
+          onClick={() => ctx.setInGameStatus("hiddenCategory")}
         >
           Let's start
         </Button>

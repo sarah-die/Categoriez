@@ -41,7 +41,7 @@ export default function CreateWords() {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
-          onClick={() => ctx.setGameStatus("reveal")}
+          onClick={() => ctx.setInGameStatus("reveal")}
         >
           Reveal categoriez
         </Button>

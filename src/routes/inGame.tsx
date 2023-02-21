@@ -16,11 +16,11 @@ export default function InGame() {
 const InnerInGame = () => {
   const ctx = useGameContext();
 
-  if (ctx.currentGameStatus === "start") {
+  if (ctx.inGameStatus === "start") {
     return <StartGame />;
-  } else if (ctx.currentGameStatus === "hiddenCategory") {
+  } else if (ctx.inGameStatus === "hiddenCategory") {
     return <ShowCategory />;
-  } else if (ctx.currentGameStatus === "createWords") {
+  } else if (ctx.inGameStatus === "createWords") {
     return <CreateWords />;
   } else {
     return <Reveal />;

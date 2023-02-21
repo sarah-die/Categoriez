@@ -59,7 +59,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
   const ctx = useGameContext();
   const changeGameStatus = () => {
     cur = 0;
-    ctx.setGameStatus("createWords");
+    ctx.setInGameStatus("createWords");
   };
   return (
     <Grid2 container flexDirection={"column"}>

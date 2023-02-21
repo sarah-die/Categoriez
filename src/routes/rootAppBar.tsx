@@ -58,7 +58,7 @@ export default function RootAppBar() {
                 variant="h4"
                 noWrap
                 component="a"
-                onClick={() => ctx.setGameStatus("start")}
+                onClick={() => ctx.setInGameStatus("start")}
                 sx={{
                   display: { xs: "flex" },
                   fontWeight: 700,
