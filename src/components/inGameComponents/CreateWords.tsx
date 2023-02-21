@@ -1,9 +1,27 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { Button, Typography } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Typography,
+} from "@mui/material";
 import { useGameContext } from "../../Context";
+import React, { useState } from "react";
+
+type CategoryShown = "hidden" | "shown";
 
 export default function CreateWords() {
   const ctx = useGameContext();
+  const [categoryShown, setCategoryShown] = useState<CategoryShown>("hidden");
+  const [chosenPlayer, setChosenPlayer] = useState<string>(
+    ctx.currentPlayers[0]
+  );
+  const setPlayerName = (e: SelectChangeEvent) => {
+    setChosenPlayer(e.target.value);
+  };
   return (
     <Grid2
       container
@@ -28,6 +46,57 @@ export default function CreateWords() {
           Reveal categoriez
         </Button>
       </Grid2>
+
+      <Grid2 container my={3}>
+        <Typography color={"inherit"} variant={"body1"} my={3} mr={5}>
+          Category forgotten? Click here to show the category from
+        </Typography>
+        <FormControl>
+          <InputLabel>Players</InputLabel>
+          <Select
+            value={chosenPlayer}
+            label="Players"
+            placeholder={ctx.currentPlayers[0]}
+            onChange={setPlayerName}
+          >
+            {ctx.currentPlayers.map((p) => {
+              return <MenuItem value={p}>{p}</MenuItem>;
+            })}
+          </Select>
+        </FormControl>
+      </Grid2>
+
+      {categoryShown === "hidden" ? (
+        <Grid2 container justifyContent={"center"}>
+          <Button
+            variant={"contained"}
+            size={"large"}
+            sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
+            onClick={() => setCategoryShown("shown")}
+          >
+            Show category
+          </Button>
+        </Grid2>
+      ) : (
+        <Grid2 container flexDirection={"column"}>
+          <Typography color={"inherit"} variant={"body1"} my={1}>
+            Your category is
+          </Typography>
+          <Typography color={"inherit"} variant={"body2"} my={1}>
+            {ctx.collections[0].categoriez[0]}
+          </Typography>
+          <Grid2 container justifyContent={"center"}>
+            <Button
+              variant={"contained"}
+              size={"large"}
+              sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
+              onClick={() => setCategoryShown("hidden")}
+            >
+              Hide category
+            </Button>
+          </Grid2>
+        </Grid2>
+      )}
     </Grid2>
   );
 }

@@ -6,8 +6,8 @@ type contextType = {
   setGameStatus: (g: GameStatus) => void;
   currentPlayers: string[];
   setPlayers: (p: string[]) => void;
-  categoriez: string[][];
-  setCategoriez: (c: string[][]) => void;
+  collections: Collection[];
+  setCollections: (c: Collection[]) => void;
 };
 
 // new context with initial values
@@ -16,16 +16,19 @@ const Context = createContext<contextType>({
   setGameStatus: () => {},
   currentPlayers: ["player1", "player2", "player3"],
   setPlayers: () => {},
-  categoriez: [[""]],
-  setCategoriez: () => {},
+  collections: [],
+  setCollections: () => {},
 });
 
 export type GameStatus = "start" | "hiddenCategory" | "createWords" | "reveal";
+export type Collection = { name: string; categoriez: string[] };
 
 export const GameProvider = (props: { children: React.ReactNode }) => {
   const [currentGameStatus, setGameStatus] = useState<GameStatus>("start");
-  const [currentPlayers, setPlayers] = useState<string[]>([]);
-  const [categoriez, setCategoriez] = useState<string[][]>([[""]]);
+  const [currentPlayers, setPlayers] = useState<string[]>(new Array(3).fill(""));
+  const [collections, setCollections] = useState<Collection[]>([
+    { name: "test", categoriez: ["1", "2"] }, { name: "test2", categoriez: ["1", "2"] }
+  ]);
 
   return (
     <Context.Provider
@@ -34,8 +37,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         setGameStatus,
         currentPlayers,
         setPlayers,
-        categoriez,
-        setCategoriez,
+        collections,
+        setCollections,
       }}
     >
       {props.children}

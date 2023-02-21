@@ -15,11 +15,13 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid2 from "@mui/material/Unstable_Grid2";
+import { useGameContext } from "../Context";
 
 export const AccordionNewCategory = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];
 }) => {
+  const ctx = useGameContext();
   return (
     <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
       <AccordionSummary
@@ -42,25 +44,24 @@ export const AccordionNewCategory = (props: {
               label="New Category"
               placeholder={"Neu entdeckte Käferart"}
               sx={{ mr: 3, mb: 3 }}
-              // value={}
+              // value={ctx.collections}
               // onChange={}
             ></TextField>
           </Grid2>
           <Grid2>
             <FormControl>
-              <InputLabel>Categriez</InputLabel>
+              <InputLabel>Categoriez</InputLabel>
               <Select
-                // value={} ToDo
-                label="Category"
+                value={ctx.collections}
+                label="Collection"
                 placeholder={"Standard"}
                 // onChange={} ToDo
               >
-                <MenuItem value={3}>Three</MenuItem>
-                <MenuItem value={4}>Four</MenuItem>
-                <MenuItem value={5}>Five</MenuItem>
-                <MenuItem value={6}>Six</MenuItem>
-                <MenuItem value={7}>Seven</MenuItem>
-                <MenuItem value={8}>Eight</MenuItem>
+                {ctx.collections.map((c) => {
+                  return (
+                      <MenuItem value={c.name}>{c.name}</MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
           </Grid2>

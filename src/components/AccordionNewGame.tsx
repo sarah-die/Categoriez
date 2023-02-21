@@ -23,7 +23,6 @@ export const AccordionNewGame = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];
 }) => {
-  // ToDo use context for current players
   const { currentPlayers, setPlayers } = useGameContext();
 
   // places text-fields to enter player names dependent on the number of players.
