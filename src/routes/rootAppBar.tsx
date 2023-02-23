@@ -23,6 +23,7 @@ const pages: Page[] = [
   { label: "About", href: "/about" },
 ];
 
+/** The RootAppBar component includes a link to the home page as well as the game rules, category collections and about page. */
 export default function RootAppBar() {
   const navigate = useNavigate();
   const ctx = useGameContext();
@@ -49,14 +50,15 @@ export default function RootAppBar() {
       }}
     >
       <AppBar sx={{ backgroundColor: "primary.light" }}>
-        {/*sm is necessary to override the default media query padding of MUI*/}
-        <Container maxWidth={false} sx={{ px: { md: 9 } }}>
+        {/*xs/md is necessary here to override the default media query padding of MUI*/}
+        <Container maxWidth={false} sx={{ px: { xs: 4 ,md: 11 } }}>
           <Toolbar disableGutters>
             <Link to="/">
               <Typography
                 variant="h4"
                 noWrap
                 component="a"
+                // ml={{md: 1}}
                 onClick={() => ctx.setInGameStatus("start")}
                 sx={{
                   display: { xs: "flex" },

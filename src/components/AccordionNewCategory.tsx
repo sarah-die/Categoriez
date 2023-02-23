@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useGameContext } from "../Context";
 
+/** This component is for adding a new category. The player can add it to an existing collection or create a new one. */
 export const AccordionNewCategory = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];

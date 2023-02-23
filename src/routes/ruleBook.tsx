@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 
+/** This component gives an overview of the rules of the game. */
 export default function RuleBook() {
   return (
       <Grid2 container>

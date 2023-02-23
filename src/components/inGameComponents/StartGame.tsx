@@ -2,6 +2,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { useGameContext } from "../../Context";
 import { Button, Typography } from "@mui/material";
 
+/** This component gives a quick overview about the following steps and the order of the players. */
 export default function StartGame() {
   const ctx = useGameContext();
   return (
@@ -52,7 +53,7 @@ export default function StartGame() {
           sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
           onClick={() => ctx.setInGameStatus("hiddenCategory")}
         >
-          Let's start
+          Let's go
         </Button>
       </Grid2>
     </Grid2>

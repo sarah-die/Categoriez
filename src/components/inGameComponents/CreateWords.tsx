@@ -13,6 +13,7 @@ import React, { useState } from "react";
 
 type CategoryShown = "hidden" | "shown";
 
+/** This component gives the players time to create their words. There is a button to continue. If one player has forgotten their category there is the possibility to reveal it again. */
 export default function CreateWords() {
   const ctx = useGameContext();
   const [categoryShown, setCategoryShown] = useState<CategoryShown>("hidden");

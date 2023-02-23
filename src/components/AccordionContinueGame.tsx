@@ -7,11 +7,11 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { useGameContext } from "../Context";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "react-router-dom";
 import React from "react";
 
+/** This accordion informs the player about a running game and gives the possibility to continue it. */
 export const AccordionContinueGame = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];

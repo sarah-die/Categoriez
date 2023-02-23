@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useGameContext } from "../Context";
 import { AccordionContinueGame } from "./AccordionContinueGame";
 
+/** Component that includes three Accordions (Continue Game, Start new Game, Add new Category). Only one Accordion is open at a time. */
 export default function ControlledAccordion() {
   const ctx = useGameContext();
   const [expanded, setExpanded] = useState<String | false>(false);
@@ -41,4 +42,3 @@ export default function ControlledAccordion() {
     </Grid2>
   );
 }
-

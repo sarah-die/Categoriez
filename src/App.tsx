@@ -2,6 +2,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { Box } from "@mui/material";
 import ControlledAccordion from "./components/ControlledAccordion";
 
+/** The main component, which is displayed in the root-route. */
 function App() {
   return (
     <Box
