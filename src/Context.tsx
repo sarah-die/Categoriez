@@ -44,8 +44,43 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
     JSON.parse(
       localStorage.getItem("collections") ||
         JSON.stringify([
-          { name: "test", categoriez: ["1", "2"] },
-          { name: "test2", categoriez: ["1", "2"] },
+          {
+            name: "category1",
+            categoriez: [
+              "cat1.1",
+              "cat1.2",
+              "cta1.3",
+              "cat4",
+              "catloremsbnsid",
+              "cat",
+              "catloremsbnsid",
+              "cat",
+              "cat",
+              "catloremsbnsid",
+              "catloremsbnsid",
+              "cat",
+              "cat",
+              "catloremsbnsid",
+            ],
+          },
+          {
+            name: "category2",
+            categoriez: ["cat2.1", "catloremsbnsid.2", "cat", "cat", "cat", "cat"],
+          },
+          {
+            name: "category3",
+            categoriez: [
+              "cat2.1",
+              "cat2.2",
+              "catloremsbnsid",
+              "catloremsbnsid",
+              "cat",
+              "cat",
+              "catloremsbnsid",
+              "cat",
+            ],
+          },
+          { name: "category4", categoriez: ["cat2.1", "catloremsbnsid.2", "cat", "cat"] },
         ])
     )
   );

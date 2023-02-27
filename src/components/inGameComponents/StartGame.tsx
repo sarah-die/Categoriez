@@ -2,7 +2,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { useGameContext } from "../../Context";
 import { Button, Typography } from "@mui/material";
 
-/** This component gives a quick overview about the following steps and the order of the players. */
+/** This component gives a quick overview about the following in-game-steps and the order of the players. */
 export default function StartGame() {
   const ctx = useGameContext();
   return (
