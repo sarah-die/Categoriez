@@ -11,6 +11,8 @@ type contextType = {
   collections: Collection[];
   setCollections: (c: Collection[]) => void;
   saveCategoryToCollection: (colName: string, newCat: string) => void;
+  snackbarStatus: boolean;
+  setSnackbarOpen: (s: boolean) => void;
 };
 
 // new context with initial values
@@ -24,6 +26,8 @@ const Context = createContext<contextType>({
   collections: [],
   setCollections: () => {},
   saveCategoryToCollection: () => {},
+  snackbarStatus: false,
+  setSnackbarOpen: () => {},
 });
 
 export type InGameStatus =
@@ -65,7 +69,14 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
           },
           {
             name: "category2",
-            categoriez: ["cat2.1", "catloremsbnsid.2", "cat", "cat", "cat", "cat"],
+            categoriez: [
+              "cat2.1",
+              "catloremsbnsid.2",
+              "cat",
+              "cat",
+              "cat",
+              "cat",
+            ],
           },
           {
             name: "category3",
@@ -80,7 +91,10 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
               "cat",
             ],
           },
-          { name: "category4", categoriez: ["cat2.1", "catloremsbnsid.2", "cat", "cat"] },
+          {
+            name: "category4",
+            categoriez: ["cat2.1", "catloremsbnsid.2", "cat", "cat"],
+          },
         ])
     )
   );
@@ -105,6 +119,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
     localStorage.setItem("collections", JSON.stringify(newCollections));
   };
 
+  const [snackbarStatus, setSnackbarOpen] = useState<boolean>(false);
+
   return (
     <Context.Provider
       value={{
@@ -117,6 +133,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         collections,
         setCollections,
         saveCategoryToCollection,
+        snackbarStatus,
+        setSnackbarOpen,
       }}
     >
       {props.children}

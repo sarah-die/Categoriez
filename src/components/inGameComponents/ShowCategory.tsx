@@ -6,7 +6,7 @@ import { Button, Typography } from "@mui/material";
 type CatStatus = "hidden" | "shown";
 let cur: number = 0;
 
-/** This component reveals each players category. */
+/** This component reveals each players' category. */
 export default function ShowCategory() {
   const [catStatus, setCatStatus] = useState<CatStatus>("hidden");
 

@@ -13,11 +13,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useGameContext } from "../Context";
 import { Link } from "react-router-dom";
+import { SnackbarError } from "./utils/SnackbarError";
 
 /** This component is for starting a new game. For this purpose, the number of players is set, as well as the names of the players. */
 export const AccordionNewGame = (props: {
@@ -33,11 +34,31 @@ export const AccordionNewGame = (props: {
     ctx.setPlayers(newPlayers.slice(0, Number(e.target.value)));
   };
 
+  const [playerConditions, setPlayerConditions] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("Error");
+
+  const checkForDuplicates = (array: string[]) => {
+    return new Set(array).size !== array.length;
+  };
+
   // adds the new name of a player to the existing list of players
   const setPlayerNames = (i: number) => (e: ChangeEvent<HTMLInputElement>) => {
     const newPlayers = [...ctx.currentPlayers];
     newPlayers[i] = e.target.value;
     ctx.setPlayers(newPlayers);
+
+    if (ctx.currentPlayers.find((p) => p === "")) {
+      setErrorMessage("Please enter a name for every player.");
+      ctx.setSnackbarOpen(true);
+      setPlayerConditions(false);
+      return;
+    } else if (checkForDuplicates(ctx.currentPlayers)) {
+      setErrorMessage("Please choose a different name for every player.");
+      ctx.setSnackbarOpen(true);
+      setPlayerConditions(false);
+      return;
+    }
+    setPlayerConditions(true);
   };
 
   const setStatus = () => {
@@ -96,6 +117,7 @@ export const AccordionNewGame = (props: {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
+          disabled={!playerConditions}
           component={Link}
           to={"/inGame"}
           onClick={() => {
@@ -104,6 +126,7 @@ export const AccordionNewGame = (props: {
         >
           Start game
         </Button>
+        <SnackbarError message={errorMessage}></SnackbarError>
       </AccordionActions>
     </Accordion>
   );
