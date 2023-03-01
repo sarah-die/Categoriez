@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useGameContext } from "../../Context";
 
+/** Snackbar to inform the user over errors. The shown message is variable. */
 export const SnackbarError = (props: { message: string }) => {
   const ctx = useGameContext();
   const handleClose = (

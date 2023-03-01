@@ -34,11 +34,43 @@ export const AccordionNewGame = (props: {
     ctx.setPlayers(newPlayers.slice(0, Number(e.target.value)));
   };
 
-  const [playerConditions, setPlayerConditions] = useState<boolean>(false);
+  const [playernameConditions, setPlayernameConditions] =
+    useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("Error");
 
-  const checkForDuplicates = (array: string[]) => {
-    return new Set(array).size !== array.length;
+  const checkForEmptyNameFields = () => {
+    if (ctx.currentPlayers.some((p) => p === "")) {
+      setErrorMessage("Please enter a name for every player.");
+      ctx.setSnackbarOpen(true);
+      return false;
+    } else if (ctx.currentPlayers.some((p) => p === " ")) {
+      setErrorMessage(
+        "Please make sure that every name contains at least one character."
+      );
+      ctx.setSnackbarOpen(true);
+    } else {
+      return true;
+    }
+  };
+
+  const checkForNameDuplicates = () => {
+    const array: string[] = ctx.currentPlayers.filter((p) => p !== "");
+    const setFromArray = new Set(array);
+    if (array.length !== setFromArray.size) {
+      setErrorMessage("Please choose a different name for every player.");
+      ctx.setSnackbarOpen(true);
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const checkPlayerNames = () => {
+    if (checkForEmptyNameFields() && checkForNameDuplicates()) {
+      setPlayernameConditions(true);
+    } else {
+      setPlayernameConditions(false);
+    }
   };
 
   // adds the new name of a player to the existing list of players
@@ -46,24 +78,16 @@ export const AccordionNewGame = (props: {
     const newPlayers = [...ctx.currentPlayers];
     newPlayers[i] = e.target.value;
     ctx.setPlayers(newPlayers);
-
-    if (ctx.currentPlayers.find((p) => p === "")) {
-      setErrorMessage("Please enter a name for every player.");
-      ctx.setSnackbarOpen(true);
-      setPlayerConditions(false);
-      return;
-    } else if (checkForDuplicates(ctx.currentPlayers)) {
-      setErrorMessage("Please choose a different name for every player.");
-      ctx.setSnackbarOpen(true);
-      setPlayerConditions(false);
-      return;
-    }
-    setPlayerConditions(true);
   };
 
   const setStatus = () => {
-    ctx.setGameStatus("ongoing");
-    ctx.setInGameStatus("start");
+    if (playernameConditions) {
+      ctx.setGameStatus("ongoing");
+      ctx.setInGameStatus("start");
+    } else {
+      checkForNameDuplicates();
+      checkForEmptyNameFields();
+    }
   };
 
   return (
@@ -95,7 +119,7 @@ export const AccordionNewGame = (props: {
           </Select>
         </FormControl>
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
-          Set names for {ctx.currentPlayers.length} Players:
+          Please set a name for all of the {ctx.currentPlayers.length} players:
         </Typography>
         <Grid2 container p={2}>
           {ctx.currentPlayers.map((p, i) => {
@@ -107,6 +131,7 @@ export const AccordionNewGame = (props: {
                 sx={{ mr: 3, mb: 3 }}
                 value={ctx.currentPlayers[i]}
                 onChange={setPlayerNames(i)}
+                onBlur={checkPlayerNames}
               ></TextField>
             );
           })}
@@ -117,7 +142,7 @@ export const AccordionNewGame = (props: {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
-          disabled={!playerConditions}
+          disabled={!playernameConditions}
           component={Link}
           to={"/inGame"}
           onClick={() => {
