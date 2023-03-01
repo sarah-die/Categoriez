@@ -13,7 +13,6 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { Outlet, useNavigate, Link as RouterLink } from "react-router-dom";
 import { Link } from "../components/utils/Link";
-import { useGameContext } from "../Context";
 
 type Page = { label: string; href: string };
 
@@ -26,7 +25,6 @@ const pages: Page[] = [
 /** The RootAppBar component includes a link to the home page as well as the game rules, category collections and about page. */
 export default function RootAppBar() {
   const navigate = useNavigate();
-  const ctx = useGameContext();
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -58,8 +56,6 @@ export default function RootAppBar() {
                 variant="h4"
                 noWrap
                 component="a"
-                // ml={{md: 1}}
-                onClick={() => ctx.setInGameStatus("start")}
                 sx={{
                   display: { xs: "flex" },
                   fontWeight: 700,
