@@ -5,6 +5,14 @@ import { Button, Typography } from "@mui/material";
 /** This component gives a quick overview about the following in-game-steps and the order of the players. */
 export default function StartGame() {
   const ctx = useGameContext();
+  const assignCategoriez = () => {
+    ctx.currentPlayers.forEach((p, i) => {
+      const newAssignedCategoriez = new Array(ctx.currentPlayers.length);
+      newAssignedCategoriez[i] = "";
+      ctx.setAssignedCategoriez(newAssignedCategoriez);
+    });
+    ctx.setInGameStatus("hiddenCategory");
+  };
   return (
     <Grid2
       container

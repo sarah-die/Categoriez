@@ -34,6 +34,10 @@ export const AccordionNewGame = (props: {
     ctx.setPlayers(newPlayers.slice(0, Number(e.target.value)));
   };
 
+  const setChosenCollection = (e: SelectChangeEvent) => {
+    // setChosenCollection(Number(e.target.value));
+  }
+
   const [playernameConditions, setPlayernameConditions] =
     useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("Error");
@@ -136,6 +140,22 @@ export const AccordionNewGame = (props: {
             );
           })}
         </Grid2>
+        <Typography variant={"body1"} mb={3}>
+          Choose a collection of categoriez to play with. If you don't want to
+          play with specific categoriez choose "All".
+        </Typography>
+        <FormControl>
+          <InputLabel>Collections</InputLabel>
+          <Select
+            value={ctx.collections[ctx.chosenCollection].name}
+            label="Collections"
+            // onChange={placeNameFields}
+          >
+            {ctx.collections.map((col) => {
+              return <MenuItem value={col.name}>{col.name}</MenuItem>;
+            })}
+          </Select>
+        </FormControl>
       </AccordionDetails>
       <AccordionActions>
         <Button
