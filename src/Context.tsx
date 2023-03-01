@@ -13,6 +13,10 @@ type contextType = {
   saveCategoryToCollection: (colName: string, newCat: string) => void;
   snackbarStatus: boolean;
   setSnackbarOpen: (s: boolean) => void;
+  assignedCategoriez: string[];
+  setAssignedCategoriez: (c: string[]) => void;
+  chosenCollection: number;
+  setChosenCollection: (c: number) => void;
 };
 
 // new context with initial values
@@ -28,6 +32,10 @@ const Context = createContext<contextType>({
   saveCategoryToCollection: () => {},
   snackbarStatus: false,
   setSnackbarOpen: () => {},
+  assignedCategoriez: [],
+  setAssignedCategoriez: () => {},
+  chosenCollection: 0,
+  setChosenCollection: () => {},
 });
 
 export type InGameStatus =
@@ -49,7 +57,7 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
       localStorage.getItem("collections") ||
         JSON.stringify([
           {
-            name: "category1",
+            name: "collection1",
             categoriez: [
               "cat1.1",
               "cat1.2",
@@ -68,7 +76,7 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
             ],
           },
           {
-            name: "category2",
+            name: "collection2",
             categoriez: [
               "cat2.1",
               "catloremsbnsid.2",
@@ -79,7 +87,7 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
             ],
           },
           {
-            name: "category3",
+            name: "collection3",
             categoriez: [
               "cat2.1",
               "cat2.2",
@@ -92,7 +100,7 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
             ],
           },
           {
-            name: "category4",
+            name: "collection4",
             categoriez: ["cat2.1", "catloremsbnsid.2", "cat", "cat"],
           },
         ])
@@ -121,6 +129,10 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
 
   const [snackbarStatus, setSnackbarOpen] = useState<boolean>(false);
 
+  const [assignedCategoriez, setAssignedCategoriez] = useState<string[]>([]);
+
+  const [chosenCollection, setChosenCollection] = useState<number>(0);
+
   return (
     <Context.Provider
       value={{
@@ -135,6 +147,10 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         saveCategoryToCollection,
         snackbarStatus,
         setSnackbarOpen,
+        assignedCategoriez,
+        setAssignedCategoriez,
+        chosenCollection,
+        setChosenCollection,
       }}
     >
       {props.children}
