@@ -8,13 +8,15 @@ export default function StartGame() {
 
   const assignCategoriez = () => {
     const newAssignedCategoriez = new Array(ctx.currentPlayers.length);
+    const chosenColIndex: number = ctx.collections.findIndex(
+      (c) => c.id === ctx.chosenCollection
+    );
+    const whiteList: number[] = ctx.collections[chosenColIndex].categoriez.map(
+      (_, i) => i
+    );
     ctx.currentPlayers.forEach((p, i) => {
-      const chosenColIndex: number = ctx.collections.findIndex(
-        (c) => c.id === ctx.chosenCollection
-      );
-      const random = Math.floor(
-        Math.random() * ctx.collections[chosenColIndex].categoriez.length
-      );
+      const random = Math.floor(Math.random() * whiteList.length);
+      whiteList.splice(random, 1);
       newAssignedCategoriez[i] =
         ctx.collections[chosenColIndex].categoriez[random];
     });
