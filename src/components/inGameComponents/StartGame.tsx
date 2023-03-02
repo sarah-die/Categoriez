@@ -8,11 +8,19 @@ export default function StartGame() {
   const assignCategoriez = () => {
     ctx.currentPlayers.forEach((p, i) => {
       const newAssignedCategoriez = new Array(ctx.currentPlayers.length);
-      newAssignedCategoriez[i] = "";
+      const chosenColIndex: number = ctx.collections.findIndex(
+        (c) => c.id === ctx.chosenCollection
+      );
+      const random = Math.floor(
+        Math.random() * ctx.collections[chosenColIndex].categoriez.length
+      );
+      newAssignedCategoriez[i] =
+        ctx.collections[chosenColIndex].categoriez[random];
       ctx.setAssignedCategoriez(newAssignedCategoriez);
     });
     ctx.setInGameStatus("hiddenCategory");
   };
+
   return (
     <Grid2
       container
@@ -59,7 +67,7 @@ export default function StartGame() {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
-          onClick={() => ctx.setInGameStatus("hiddenCategory")}
+          onClick={() => assignCategoriez()}
         >
           Let's go
         </Button>
