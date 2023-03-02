@@ -34,10 +34,6 @@ export const AccordionNewGame = (props: {
     ctx.setPlayers(newPlayers.slice(0, Number(e.target.value)));
   };
 
-  const setChosenCollection = (e: SelectChangeEvent) => {
-    // setChosenCollection(Number(e.target.value));
-  }
-
   const [playernameConditions, setPlayernameConditions] =
     useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("Error");
@@ -147,12 +143,19 @@ export const AccordionNewGame = (props: {
         <FormControl>
           <InputLabel>Collections</InputLabel>
           <Select
-            value={ctx.collections[ctx.chosenCollection].name}
             label="Collections"
-            // onChange={placeNameFields}
+            placeholder={"All"}
+            value={ctx.chosenCollection}
+            onChange={(e) => {
+              ctx.setChosenCollection(e.target.value);
+            }}
           >
             {ctx.collections.map((col) => {
-              return <MenuItem value={col.name}>{col.name}</MenuItem>;
+              return (
+                <MenuItem value={col.id} key={col.id}>
+                  {col.name}
+                </MenuItem>
+              );
             })}
           </Select>
         </FormControl>
