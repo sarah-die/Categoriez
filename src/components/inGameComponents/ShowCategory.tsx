@@ -68,7 +68,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
         Your Category is:
       </Typography>
       <Typography color={"inherit"} variant={"body2"} my={1}>
-          {ctx.assignedCategoriez[props.cur]}
+        {ctx.assignedCategoriez[props.cur]}
       </Typography>
       {props.cur === ctx.currentPlayers.length - 1 ? (
         <></>
