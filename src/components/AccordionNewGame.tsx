@@ -103,7 +103,7 @@ export const AccordionNewGame = (props: {
         <Typography variant={"body1"} sx={{ mb: 3 }}>
           Please select the number of players (3 - 8).
         </Typography>
-        <FormControl>
+        <FormControl sx={{ minWidth: 150 }}>
           <InputLabel>Player</InputLabel>
           <Select
             value={ctx.currentPlayers.length.toString()}
@@ -140,7 +140,7 @@ export const AccordionNewGame = (props: {
           Choose a collection of categoriez to play with. If you don't want to
           play with specific categoriez choose "All".
         </Typography>
-        <FormControl>
+        <FormControl sx={{ minWidth: 150 }}>
           <InputLabel>Collections</InputLabel>
           <Select
             label="Collections"
