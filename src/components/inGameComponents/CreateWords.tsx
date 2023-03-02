@@ -5,7 +5,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Typography,
 } from "@mui/material";
 import { useGameContext } from "../../Context";
@@ -17,12 +16,8 @@ type CategoryShown = "hidden" | "shown";
 export default function CreateWords() {
   const ctx = useGameContext();
   const [categoryShown, setCategoryShown] = useState<CategoryShown>("hidden");
-  const [chosenPlayer, setChosenPlayer] = useState<string>(
-    ctx.currentPlayers[0]
-  );
-  const setPlayerName = (e: SelectChangeEvent) => {
-    setChosenPlayer(e.target.value);
-  };
+  const [chosenPlayer, setChosenPlayer] = useState<number>(0);
+
   return (
     <Grid2
       container
@@ -55,18 +50,21 @@ export default function CreateWords() {
         <FormControl>
           <InputLabel>Players</InputLabel>
           <Select
-            value={chosenPlayer}
+            value={chosenPlayer.toString()}
             label="Players"
             placeholder={ctx.currentPlayers[0]}
-            onChange={setPlayerName}
+            onChange={(e) => setChosenPlayer(Number(e.target.value))}
           >
-            {ctx.currentPlayers.map((p) => {
-              return <MenuItem value={p}>{p}</MenuItem>;
+            {ctx.currentPlayers.map((p, index) => {
+              return (
+                <MenuItem value={index} key={index}>
+                  {p}
+                </MenuItem>
+              );
             })}
           </Select>
         </FormControl>
       </Grid2>
-
       {categoryShown === "hidden" ? (
         <Grid2 container justifyContent={"center"}>
           <Button
@@ -84,7 +82,7 @@ export default function CreateWords() {
             Your category is
           </Typography>
           <Typography color={"inherit"} variant={"body2"} my={1}>
-            {ctx.collections[0].categoriez[0]}
+            {ctx.assignedCategoriez[chosenPlayer]}
           </Typography>
           <Grid2 container justifyContent={"center"}>
             <Button
