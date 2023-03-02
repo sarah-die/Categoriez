@@ -5,9 +5,10 @@ import { Button, Typography } from "@mui/material";
 /** This component gives a quick overview about the following in-game-steps and the order of the players. */
 export default function StartGame() {
   const ctx = useGameContext();
+
   const assignCategoriez = () => {
+    const newAssignedCategoriez = new Array(ctx.currentPlayers.length);
     ctx.currentPlayers.forEach((p, i) => {
-      const newAssignedCategoriez = new Array(ctx.currentPlayers.length);
       const chosenColIndex: number = ctx.collections.findIndex(
         (c) => c.id === ctx.chosenCollection
       );
@@ -16,8 +17,8 @@ export default function StartGame() {
       );
       newAssignedCategoriez[i] =
         ctx.collections[chosenColIndex].categoriez[random];
-      ctx.setAssignedCategoriez(newAssignedCategoriez);
     });
+    ctx.setAssignedCategoriez(newAssignedCategoriez);
     ctx.setInGameStatus("hiddenCategory");
   };
 
