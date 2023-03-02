@@ -10,7 +10,7 @@ export default function RuleBook() {
         m={{ xs: 2, md: 9 }}
         sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
       >
-        <Typography color={"inherit"} variant={"body1"} m={3}>
+        <Typography color={"inherit"} variant={"body2"} m={3}>
           Spielvorbereitung
         </Typography>
         <Typography color={"inherit"} variant={"body1"} m={3}>
@@ -24,7 +24,7 @@ export default function RuleBook() {
           aus Kategorien ihr spielen wollt. Ihr könnt außerdem die Anzahl der
           gespielten Runden anpassen - standardmäßig werden 6 Runden gespielt.
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} m={3}>
+        <Typography color={"inherit"} variant={"body2"} m={3}>
           Spielverlauf
         </Typography>
         <Typography color={"inherit"} variant={"body1"} m={3}>
