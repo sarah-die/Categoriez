@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { nanoid } from "nanoid";
 
-
 const presetCollections: Collection[] = [
   {
     name: "All",
@@ -130,7 +129,11 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         ...existingCol,
         categoriez: [...existingCol.categoriez, newCat],
       };
-      newCollections = collections.slice().splice(existingColIndex, 1, newCol);
+      newCollections = [
+        ...collections.slice(0, existingColIndex),
+        newCol,
+        ...collections.slice(existingColIndex + 1),
+      ];
     } else {
       newCollections = [
         ...collections,
