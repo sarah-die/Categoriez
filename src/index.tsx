@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { mainTheme } from "./mainTheme";
 import "@fontsource/ibm-plex-sans/300.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import RootAppBar from "./routes/rootAppBar";
 import InGame from "./routes/inGame";
 import Categoriez from "./routes/categoriez";
@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <RootAppBar />,
