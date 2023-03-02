@@ -26,17 +26,18 @@ export const AccordionNewCategory = (props: {
 
   const [catVal, setCatVal] = useState<string>("");
 
-  const [chosenCollection, setChosenCollection] =
-    useState<string>("New Collection");
+  const [selectedCollection, setSelectedCollection] = useState<string>("new");
 
   const [newCollection, setNewCollection] = useState<string>("");
 
-  const saveLocal = () => {
-    // ToDo chosenCollection oder newCollection
-    ctx.saveCategoryToCollection(newCollection, catVal);
+  const saveNewCategoryLocal = () => {
+    ctx.saveCategoryToCollection(
+      selectedCollection === "new" ? newCollection : selectedCollection,
+      catVal
+    );
     setCatVal("");
     setNewCollection("");
-    setChosenCollection("New Collection");
+    setSelectedCollection("new");
   };
 
   return (
@@ -64,21 +65,21 @@ export const AccordionNewCategory = (props: {
           onChange={(e) => setCatVal(e.target.value)}
         ></TextField>
         <Grid2 container px={2} alignContent={"flex-start"} rowSpacing={1}>
-          <FormControl sx={{ mr: 3, mb: 3 }}>
-            <InputLabel>Categoriez</InputLabel>
+          <FormControl sx={{ mr: 3, mb: 3, minWidth: 150 }}>
+            <InputLabel>Collections</InputLabel>
             <Select
               label="Collection"
-              placeholder={"Standard"}
-              value={chosenCollection}
-              onChange={(e) => setChosenCollection(e.target.value)}
+              placeholder={"All"}
+              value={selectedCollection}
+              onChange={(e) => setSelectedCollection(e.target.value)}
             >
               {ctx.collections.map((c) => {
                 return <MenuItem value={c.name}>{c.name}</MenuItem>;
               })}
-              <MenuItem value={"New Collection"}>NewCollection</MenuItem>
+              <MenuItem value={"new"}>New Collection</MenuItem>
             </Select>
           </FormControl>
-          {chosenCollection === "New Collection" ? (
+          {selectedCollection === "new" ? (
             <TextField
               required
               sx={{ mr: 3, mb: 3 }}
@@ -97,7 +98,7 @@ export const AccordionNewCategory = (props: {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
-          onClick={saveLocal}
+          onClick={saveNewCategoryLocal}
         >
           Add Category
         </Button>
