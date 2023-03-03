@@ -5,6 +5,7 @@ import ShowCategory from "../components/inGameComponents/ShowCategory";
 import CreateWords from "../components/inGameComponents/CreateWords";
 import Reveal from "../components/inGameComponents/Reveal";
 import StartNewRound from "../components/inGameComponents/StartNewRound";
+import App from "../App";
 
 /** What this component renders depends on the inGameStatus. According to this "StartGame", "ShowCategory", "CreateWords" or "Reveal" are shown. */
 export default function InGame() {
@@ -18,15 +19,19 @@ export default function InGame() {
 const InnerInGame = () => {
   const ctx = useGameContext();
 
-  if (ctx.inGameStatus === "start") {
-    return <StartGame />;
-  } else if (ctx.inGameStatus === "hiddenCategory") {
-    return <ShowCategory />;
-  } else if (ctx.inGameStatus === "createWords") {
-    return <CreateWords />;
-  } else if (ctx.inGameStatus === "reveal") {
-    return <Reveal />;
+  if (ctx.gameStatus === "ongoing") {
+    if (ctx.inGameStatus === "start") {
+      return <StartGame />;
+    } else if (ctx.inGameStatus === "hiddenCategory") {
+      return <ShowCategory />;
+    } else if (ctx.inGameStatus === "createWords") {
+      return <CreateWords />;
+    } else if (ctx.inGameStatus === "reveal") {
+      return <Reveal />;
+    } else {
+      return <StartNewRound />;
+    }
   } else {
-    return <StartNewRound />;
+    return <App />;
   }
 };
