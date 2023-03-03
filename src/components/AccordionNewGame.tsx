@@ -159,6 +159,32 @@ export const AccordionNewGame = (props: {
             })}
           </Select>
         </FormControl>
+        <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
+          {" "}
+          Choose how many rounds you want to play - up to a maximum of 10
+          rounds. By default 6 rounds are played.
+        </Typography>
+        <FormControl sx={{ minWidth: 150 }}>
+          <InputLabel>Rounds</InputLabel>
+          <Select
+            value={ctx.roundStatus.length.toString()}
+            label="Rounds"
+            onChange={(e) => {
+              ctx.setRoundStatus(new Array(Number(e.target.value)).fill(0));
+            }}
+          >
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={2}>Two</MenuItem>
+            <MenuItem value={3}>Three</MenuItem>
+            <MenuItem value={4}>Four</MenuItem>
+            <MenuItem value={5}>Five</MenuItem>
+            <MenuItem value={6}>Six</MenuItem>
+            <MenuItem value={7}>Seven</MenuItem>
+            <MenuItem value={8}>Eight</MenuItem>
+            <MenuItem value={9}>Nine</MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+          </Select>
+        </FormControl>
       </AccordionDetails>
       <AccordionActions>
         <Button
