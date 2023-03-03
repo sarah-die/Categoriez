@@ -19,6 +19,8 @@ type contextType = {
   setSnackbarOpen: (s: boolean) => void;
   assignedCategoriez: string[];
   setAssignedCategoriez: (c: string[]) => void;
+  categoriezWhitelist: number[];
+  setCategoriezWhitelist: (w: number[]) => void;
   chosenCollection: Collection["id"];
   setChosenCollection: (c: Collection["id"]) => void;
 };
@@ -40,6 +42,8 @@ const Context = createContext<contextType>({
   setSnackbarOpen: () => {},
   assignedCategoriez: [],
   setAssignedCategoriez: () => {},
+  categoriezWhitelist: [],
+  setCategoriezWhitelist: () => {},
   chosenCollection: presetCollections[0].id,
   setChosenCollection: () => {},
 });
@@ -93,7 +97,7 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
   const [snackbarStatus, setSnackbarOpen] = useState<boolean>(false);
 
   const [assignedCategoriez, setAssignedCategoriez] = useState<string[]>([]);
-
+  const [categoriezWhitelist, setCategoriezWhitelist] = useState<number[]>([]);
   const [chosenCollection, setChosenCollection] = useState<Collection["id"]>(
     presetCollections[0].id
   );
@@ -101,10 +105,10 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
   return (
     <Context.Provider
       value={{
-        gameStatus: gameStatus,
-        setGameStatus: setGameStatus,
-        inGameStatus: inGameStatus,
-        setInGameStatus: setInGameStatus,
+        gameStatus,
+        setGameStatus,
+        inGameStatus,
+        setInGameStatus,
         roundStatus,
         setRoundStatus,
         currentPlayers,
@@ -116,6 +120,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         setSnackbarOpen,
         assignedCategoriez,
         setAssignedCategoriez,
+        categoriezWhitelist,
+        setCategoriezWhitelist,
         chosenCollection,
         setChosenCollection,
       }}

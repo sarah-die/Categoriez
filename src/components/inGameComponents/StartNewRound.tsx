@@ -10,15 +10,14 @@ export default function StartNewRound() {
     const chosenColIndex: number = ctx.collections.findIndex(
       (c) => c.id === ctx.chosenCollection
     );
-    const whiteList: number[] = ctx.collections[chosenColIndex].categoriez.map(
-      (_, i) => i
-    );
+    const whiteList: number[] = [...ctx.categoriezWhitelist];
     ctx.currentPlayers.forEach((p, i) => {
       const random = Math.floor(Math.random() * whiteList.length);
       whiteList.splice(random, 1);
       newAssignedCategoriez[i] =
         ctx.collections[chosenColIndex].categoriez[random];
     });
+    ctx.setCategoriezWhitelist(whiteList);
     ctx.setAssignedCategoriez(newAssignedCategoriez);
     ctx.setInGameStatus("hiddenCategory");
   };

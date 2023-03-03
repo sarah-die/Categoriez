@@ -18,6 +18,57 @@ export default function CreateWords() {
   const [categoryShown, setCategoryShown] = useState<CategoryShown>("hidden");
   const [chosenPlayer, setChosenPlayer] = useState<number>(0);
 
+  // shuffle the catgeoriez before the reveal
+  const fisherYates = (arr: string[]) => {
+    let currentIndex: number = arr.length;
+    let randomIndex: number = 0;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [arr[currentIndex], arr[randomIndex]] = [
+        arr[randomIndex],
+        arr[currentIndex],
+      ];
+    }
+    return arr;
+  };
+
+  // add more categoriez according to the gamerules
+  const drawExtraCategoriez = () => {
+    const assignedCatPlusExtraCat: string[] = [...ctx.assignedCategoriez];
+    const chosenColIndex: number = ctx.collections.findIndex(
+      (c) => c.id === ctx.chosenCollection
+    );
+    const whiteList: number[] = [...ctx.categoriezWhitelist];
+
+    let n: number = 0;
+    if (ctx.currentPlayers.length <= 5) {
+      // 6 categoriez for <= 5 players
+      n = 6 - ctx.currentPlayers.length;
+    } else if (ctx.currentPlayers.length <= 7) {
+      // 7 categoriez for <= 7 players
+      n = 7 - ctx.currentPlayers.length;
+    } else {
+      // 8 categoriez for 8 players
+      n = 8 - ctx.currentPlayers.length;
+    }
+    for (let i = 0; i < n; i++) {
+      const random = Math.floor(Math.random() * whiteList.length);
+      whiteList.splice(random, 1);
+      assignedCatPlusExtraCat.push(
+        ctx.collections[chosenColIndex].categoriez[random]
+      );
+    }
+    const shuffledCat: string[] = fisherYates(assignedCatPlusExtraCat);
+    ctx.setCategoriezWhitelist(whiteList);
+    ctx.setAssignedCategoriez(shuffledCat);
+  };
+
+  const revealCategoriez = () => {
+    drawExtraCategoriez();
+    ctx.setInGameStatus("reveal");
+  };
+
   return (
     <Grid2
       container
@@ -37,7 +88,7 @@ export default function CreateWords() {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
-          onClick={() => ctx.setInGameStatus("reveal")}
+          onClick={() => revealCategoriez()}
         >
           Reveal categoriez
         </Button>

@@ -20,6 +20,7 @@ export default function StartGame() {
       newAssignedCategoriez[i] =
         ctx.collections[chosenColIndex].categoriez[random];
     });
+    ctx.setCategoriezWhitelist(whiteList);
     ctx.setAssignedCategoriez(newAssignedCategoriez);
     ctx.setInGameStatus("hiddenCategory");
   };
