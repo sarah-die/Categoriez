@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { nanoid } from "nanoid";
-import {presetCollections} from "./components/presetCollections";
+import { presetCollections } from "./components/presetCollections";
 
 // globally available props
 type contextType = {
@@ -8,6 +8,8 @@ type contextType = {
   setGameStatus: (g: GameStatus) => void;
   inGameStatus: InGameStatus;
   setInGameStatus: (i: InGameStatus) => void;
+  roundStatus: number[];
+  setRoundStatus: (r: number[]) => void;
   currentPlayers: string[];
   setPlayers: (p: string[]) => void;
   collections: Collection[];
@@ -27,6 +29,8 @@ const Context = createContext<contextType>({
   setGameStatus: () => {},
   inGameStatus: "start",
   setInGameStatus: () => {},
+  roundStatus: [],
+  setRoundStatus: () => {},
   currentPlayers: ["player1", "player2", "player3"],
   setPlayers: () => {},
   collections: [],
@@ -51,6 +55,7 @@ export type Collection = { name: string; categoriez: string[]; id: string };
 export const GameProvider = (props: { children: React.ReactNode }) => {
   const [gameStatus, setGameStatus] = useState<GameStatus>("noCurrentGame");
   const [inGameStatus, setInGameStatus] = useState<InGameStatus>("start");
+  const [roundStatus, setRoundStatus] = useState<number[]>([]);
   const [currentPlayers, setPlayers] = useState<string[]>(
     new Array(3).fill("")
   );
@@ -99,6 +104,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         setGameStatus: setGameStatus,
         inGameStatus: inGameStatus,
         setInGameStatus: setInGameStatus,
+        roundStatus,
+        setRoundStatus,
         currentPlayers,
         setPlayers,
         collections,
