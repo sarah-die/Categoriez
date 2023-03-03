@@ -55,7 +55,7 @@ export type Collection = { name: string; categoriez: string[]; id: string };
 export const GameProvider = (props: { children: React.ReactNode }) => {
   const [gameStatus, setGameStatus] = useState<GameStatus>("noCurrentGame");
   const [inGameStatus, setInGameStatus] = useState<InGameStatus>("start");
-  const [roundStatus, setRoundStatus] = useState<number[]>([]);
+  const [roundStatus, setRoundStatus] = useState<number[]>([0, 0, 0, 0, 0, 0]);
   const [currentPlayers, setPlayers] = useState<string[]>(
     new Array(3).fill("")
   );
