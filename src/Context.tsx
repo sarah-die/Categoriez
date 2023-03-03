@@ -26,27 +26,7 @@ type contextType = {
 };
 
 // new context with initial values
-const Context = createContext<contextType>({
-  gameStatus: "noCurrentGame",
-  setGameStatus: () => {},
-  inGameStatus: "start",
-  setInGameStatus: () => {},
-  roundStatus: [],
-  setRoundStatus: () => {},
-  currentPlayers: ["player1", "player2", "player3"],
-  setPlayers: () => {},
-  collections: [],
-  setCollections: () => {},
-  saveCategoryToCollection: () => {},
-  snackbarStatus: false,
-  setSnackbarOpen: () => {},
-  assignedCategoriez: [],
-  setAssignedCategoriez: () => {},
-  categoriezWhitelist: [],
-  setCategoriezWhitelist: () => {},
-  chosenCollection: presetCollections[0].id,
-  setChosenCollection: () => {},
-});
+const Context = createContext<contextType>(null as unknown as contextType);
 
 export type InGameStatus =
   | "start"
@@ -57,12 +37,26 @@ export type InGameStatus =
 export type GameStatus = "ongoing" | "noCurrentGame";
 export type Collection = { name: string; categoriez: string[]; id: string };
 
+export const initial: Partial<contextType> = {
+  gameStatus: "noCurrentGame",
+  inGameStatus: "start",
+  roundStatus: new Array(6).fill(0),
+  currentPlayers: new Array(3).fill(""),
+  assignedCategoriez: [],
+  categoriezWhitelist: [],
+  chosenCollection: presetCollections[0].id,
+};
+
 export const GameProvider = (props: { children: React.ReactNode }) => {
-  const [gameStatus, setGameStatus] = useState<GameStatus>("noCurrentGame");
-  const [inGameStatus, setInGameStatus] = useState<InGameStatus>("start");
-  const [roundStatus, setRoundStatus] = useState<number[]>([0, 0, 0, 0, 0, 0]);
+  const [gameStatus, setGameStatus] = useState<GameStatus>(initial.gameStatus!);
+  const [inGameStatus, setInGameStatus] = useState<InGameStatus>(
+    initial.inGameStatus!
+  );
+  const [roundStatus, setRoundStatus] = useState<number[]>(
+    initial.roundStatus!
+  );
   const [currentPlayers, setPlayers] = useState<string[]>(
-    new Array(3).fill("")
+    initial.currentPlayers!
   );
   const [collections, setCollections] = useState<Collection[]>(
     JSON.parse(
@@ -95,11 +89,14 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
   };
 
   const [snackbarStatus, setSnackbarOpen] = useState<boolean>(false);
-
-  const [assignedCategoriez, setAssignedCategoriez] = useState<string[]>([]);
-  const [categoriezWhitelist, setCategoriezWhitelist] = useState<number[]>([]);
+  const [assignedCategoriez, setAssignedCategoriez] = useState<string[]>(
+    initial.assignedCategoriez!
+  );
+  const [categoriezWhitelist, setCategoriezWhitelist] = useState<number[]>(
+    initial.categoriezWhitelist!
+  );
   const [chosenCollection, setChosenCollection] = useState<Collection["id"]>(
-    presetCollections[0].id
+    initial.chosenCollection!
   );
 
   return (
