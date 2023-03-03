@@ -34,6 +34,9 @@ export default function StartGame() {
       flexDirection={"column"}
     >
       <Typography color={"inherit"} variant={"body1"} my={1}>
+        Welcome to round 1!
+      </Typography>
+      <Typography color={"inherit"} variant={"body1"} my={1}>
         The first thing you will see are your assigned categoriez. You'll see
         them in the following order:
       </Typography>
