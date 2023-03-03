@@ -12,6 +12,7 @@ export default function Reveal() {
     const indexOf0: number = ctx.roundStatus.indexOf(0);
     const newRoundStatus = [...ctx.roundStatus];
     newRoundStatus.splice(indexOf0, 1, 1);
+    ctx.setRoundStatus(newRoundStatus);
     ctx.setInGameStatus("beginOfNewRound");
   };
 
@@ -62,7 +63,7 @@ export default function Reveal() {
           Alle Punkte verteilt?
         </Typography>
         <Grid2 container justifyContent={"center"}>
-          {ctx.roundStatus.indexOf(0) + 1 === ctx.roundStatus.length ? (
+          {ctx.roundStatus.indexOf(0) === ctx.roundStatus.length - 1 ? (
             <Button
               variant={"contained"}
               size={"large"}
