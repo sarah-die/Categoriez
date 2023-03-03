@@ -46,6 +46,7 @@ const Context = createContext<contextType>({
 
 export type InGameStatus =
   | "start"
+  | "beginOfNewRound"
   | "hiddenCategory"
   | "createWords"
   | "reveal";
