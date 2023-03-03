@@ -33,7 +33,8 @@ export default function StartNewRound() {
       flexDirection={"column"}
     >
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Ihr seid nun in Runde {}. Der neue Startspieler ist {}.
+        Ihr seid nun in Runde {ctx.roundStatus.indexOf(0) + 1}. Der neue
+        Startspieler ist {}.
       </Typography>
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Startet die nächste Runde mit Klick auf den Button.
