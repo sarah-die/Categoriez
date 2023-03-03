@@ -54,10 +54,10 @@ export default function CreateWords() {
     }
     for (let i = 0; i < n; i++) {
       const random = Math.floor(Math.random() * whiteList.length);
-      whiteList.splice(random, 1);
       assignedCatPlusExtraCat.push(
-        ctx.collections[chosenColIndex].categoriez[random]
+        ctx.collections[chosenColIndex].categoriez[whiteList[random]]
       );
+      whiteList.splice(random, 1);
     }
     const shuffledCat: string[] = fisherYates(assignedCatPlusExtraCat);
     ctx.setCategoriezWhitelist(whiteList);

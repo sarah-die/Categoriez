@@ -16,9 +16,9 @@ export default function StartGame() {
     );
     ctx.currentPlayers.forEach((p, i) => {
       const random = Math.floor(Math.random() * whiteList.length);
-      whiteList.splice(random, 1);
       newAssignedCategoriez[i] =
-        ctx.collections[chosenColIndex].categoriez[random];
+        ctx.collections[chosenColIndex].categoriez[whiteList[random]];
+      whiteList.splice(random, 1);
     });
     ctx.setCategoriezWhitelist(whiteList);
     ctx.setAssignedCategoriez(newAssignedCategoriez);
