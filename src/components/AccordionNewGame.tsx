@@ -18,7 +18,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useGameContext } from "../Context";
 import { Link } from "react-router-dom";
-import { SnackbarError } from "./utils/SnackbarError";
+import { CustomSnackbar } from "./utils/CustomSnackbar";
 
 /** This component is for starting a new game. For this purpose, the number of players is set, as well as the names of the players. */
 export const AccordionNewGame = (props: {
@@ -200,7 +200,7 @@ export const AccordionNewGame = (props: {
         >
           Start game
         </Button>
-        <SnackbarError message={errorMessage}></SnackbarError>
+        <CustomSnackbar message={errorMessage}></CustomSnackbar>
       </AccordionActions>
     </Accordion>
   );
