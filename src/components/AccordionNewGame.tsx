@@ -36,15 +36,15 @@ export const AccordionNewGame = (props: {
 
   const [playernameConditions, setPlayernameConditions] =
     useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>("Error");
+  const [snackbarMessage, setSnackbarMessage] = useState<string>("Error");
 
   const checkForEmptyNameFields = () => {
     if (ctx.currentPlayers.some((p) => p === "")) {
-      setErrorMessage("Please enter a name for every player.");
+      setSnackbarMessage("Please enter a name for every player.");
       ctx.setSnackbarOpen(true);
       return false;
     } else if (ctx.currentPlayers.some((p) => p === " ")) {
-      setErrorMessage(
+      setSnackbarMessage(
         "Please make sure that every name contains at least one character."
       );
       ctx.setSnackbarOpen(true);
@@ -57,7 +57,7 @@ export const AccordionNewGame = (props: {
     const array: string[] = ctx.currentPlayers.filter((p) => p !== "");
     const setFromArray = new Set(array);
     if (array.length !== setFromArray.size) {
-      setErrorMessage("Please choose a different name for every player.");
+      setSnackbarMessage("Please choose a different name for every player.");
       ctx.setSnackbarOpen(true);
       return false;
     } else {
@@ -200,7 +200,7 @@ export const AccordionNewGame = (props: {
         >
           Start game
         </Button>
-        <CustomSnackbar message={errorMessage}></CustomSnackbar>
+        <CustomSnackbar message={snackbarMessage}></CustomSnackbar>
       </AccordionActions>
     </Accordion>
   );

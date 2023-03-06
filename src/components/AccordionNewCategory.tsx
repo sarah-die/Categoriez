@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useGameContext } from "../Context";
+import { CustomSnackbar } from "./utils/CustomSnackbar";
 
 /** This component is for adding a new category. The player can add it to an existing collection or create a new one. */
 export const AccordionNewCategory = (props: {
@@ -30,11 +31,15 @@ export const AccordionNewCategory = (props: {
 
   const [newCollection, setNewCollection] = useState<string>("");
 
+  const [snackbarMessage, setSnackbarMessage] = useState<string>("Error");
+
   const saveNewCategoryLocal = () => {
     ctx.saveCategoryToCollection(
       selectedCollection === "new" ? newCollection : selectedCollection,
       catVal
     );
+    setSnackbarMessage("Die neue Kategorie wurde gespeichert.");
+    ctx.setSnackbarOpen(true);
     setCatVal("");
     setNewCollection("");
     setSelectedCollection("new");
@@ -102,6 +107,7 @@ export const AccordionNewCategory = (props: {
         >
           Add Category
         </Button>
+        <CustomSnackbar message={snackbarMessage}></CustomSnackbar>
       </AccordionActions>
     </Accordion>
   );

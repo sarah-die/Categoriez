@@ -7,7 +7,10 @@ import { useGameContext } from "../../Context";
 import { mainTheme } from "../../mainTheme";
 
 /** Customized Snackbar to inform the user over errors. The shown message is variable. */
-export const CustomSnackbar = (props: { message: string }) => {
+export const CustomSnackbar = (props: {
+  message: string;
+  // customColor: string
+}) => {
   const ctx = useGameContext();
   const handleClose = (
     event: React.SyntheticEvent | Event,
@@ -44,6 +47,7 @@ export const CustomSnackbar = (props: { message: string }) => {
         TransitionProps={{ enter: true, exit: false }}
         onClose={handleClose}
         action={action}
+        // ToDo wenn eine customColor übergeben wird, verweden diese, sonst verwende den Standard (s.u.)
         sx={{
           "& .MuiSnackbarContent-root": {
             backgroundColor: mainTheme.palette.secondary.main,
