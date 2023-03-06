@@ -36,6 +36,7 @@ export const AccordionNewGame = (props: {
 
   const [playernameConditions, setPlayernameConditions] =
     useState<boolean>(false);
+
   const [snackbarMessage, setSnackbarMessage] = useState<string>("Error");
 
   const checkForEmptyNameFields = () => {

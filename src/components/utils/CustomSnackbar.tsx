@@ -9,7 +9,7 @@ import { mainTheme } from "../../mainTheme";
 /** Customized Snackbar to inform the user over errors. The shown message is variable. */
 export const CustomSnackbar = (props: {
   message: string;
-  // customColor: string
+  customColor?: string
 }) => {
   const ctx = useGameContext();
   const handleClose = (
@@ -48,9 +48,10 @@ export const CustomSnackbar = (props: {
         onClose={handleClose}
         action={action}
         // ToDo wenn eine customColor übergeben wird, verweden diese, sonst verwende den Standard (s.u.)
+        // use SnackbarContent API to access style components
         sx={{
           "& .MuiSnackbarContent-root": {
-            backgroundColor: mainTheme.palette.secondary.main,
+            backgroundColor: props.customColor || mainTheme.palette.secondary.main,
             px: 2,
             py: 1,
           },
