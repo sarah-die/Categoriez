@@ -17,9 +17,10 @@ import { Link } from "../components/utils/Link";
 type Page = { label: string; href: string };
 
 const pages: Page[] = [
-  { label: "Rule Book", href: "/ruleBook" },
+  { label: "Spielregeln", href: "/ruleBook" },
   { label: "Categoriez", href: "/categoriez" },
   { label: "About", href: "/about" },
+  { label: "Impressum", href: "/impressum" },
 ];
 
 /** The RootAppBar component includes a link to the home page as well as the game rules, category collections and about page. */
@@ -49,7 +50,7 @@ export default function RootAppBar() {
     >
       <AppBar sx={{ backgroundColor: "primary.light" }}>
         {/*xs/md is necessary here to override the default media query padding of MUI*/}
-        <Container maxWidth={false} sx={{ px: { xs: 4 ,md: 11 } }}>
+        <Container maxWidth={false} sx={{ px: { xs: 4, md: 11 } }}>
           <Toolbar disableGutters>
             <Link to="/">
               <Typography

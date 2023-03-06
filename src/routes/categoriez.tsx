@@ -14,7 +14,8 @@ export default function Categoriez() {
         sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
       >
         <Typography color={"inherit"} variant={"body1"} mb={2}>
-          This is an overview over existing collections and their categoriez.
+          Diese Seite gibt euch eine Übersicht über existierende Kollektionen
+          und deren Categoriez.
         </Typography>
         <Grid container spacing={{ xs: 2, md: 3 }}>
           {ctx.collections.map((c) => {

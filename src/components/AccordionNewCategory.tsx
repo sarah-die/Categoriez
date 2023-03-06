@@ -52,18 +52,19 @@ export const AccordionNewCategory = (props: {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography variant={"h4"}>Add new categoriez</Typography>
+        <Typography variant={"h4"}>Neue Categoriez hinzufügen</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography variant={"body1"} sx={{ mb: 3 }}>
-          You can enter new categoriez here. First write down your category -
-          than choose if you want to add them to an existing collection or if
-          you like to create a new collection of categoriez.
+          Hier könnt ihr neue Categoriez hinzufügen, um mit euren eigenen Ideen
+          zu spielen. Schreibt zuerst die neue Category in das Feld. Wählt dann
+          die Kollektion, zur der ihr diese hinzufügen wollt oder erstellt eine
+          neue Kollektion.
         </Typography>
         <TextField
           required
           id={"newCategory"}
-          label="New Category"
+          label="Neue Category"
           placeholder={"Neu entdeckte Käferart"}
           sx={{ mr: 3, mb: 3 }}
           value={catVal}
@@ -73,22 +74,22 @@ export const AccordionNewCategory = (props: {
           <FormControl sx={{ mr: 3, mb: 3, minWidth: 150 }}>
             <InputLabel>Collections</InputLabel>
             <Select
-              label="Collection"
-              placeholder={"All"}
+              label="Kollektion"
+              placeholder={"Alle"}
               value={selectedCollection}
               onChange={(e) => setSelectedCollection(e.target.value)}
             >
               {ctx.collections.map((c) => {
                 return <MenuItem value={c.name}>{c.name}</MenuItem>;
               })}
-              <MenuItem value={"new"}>New Collection</MenuItem>
+              <MenuItem value={"new"}>Neue Kollektion</MenuItem>
             </Select>
           </FormControl>
           {selectedCollection === "new" ? (
             <TextField
               required
               sx={{ mr: 3, mb: 3 }}
-              label="New Collection"
+              label="Neue Kollektion"
               placeholder={"Tierisches"}
               value={newCollection}
               onChange={(e) => setNewCollection(e.target.value)}
@@ -105,7 +106,7 @@ export const AccordionNewCategory = (props: {
           sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
           onClick={saveNewCategoryLocal}
         >
-          Add Category
+          Category hinzufügen
         </Button>
         <CustomSnackbar message={snackbarMessage}></CustomSnackbar>
       </AccordionActions>

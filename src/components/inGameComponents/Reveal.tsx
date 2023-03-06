@@ -27,8 +27,8 @@ export default function Reveal() {
         flexDirection={"column"}
       >
         <Typography color={"inherit"} variant={"body1"} my={1}>
-          Hier sind eure Kategorien. Nehmt euch nun die Zeit zu erraten wer
-          welche Kategorie gelegt hat. Wertet anschließend, vom Startspieler ({}
+          Hier sind eure Categoriez. Nehmt euch nun die Zeit zu erraten wer
+          welche Category gelegt hat. Wertet anschließend, vom Startspieler ({}
           ) beginnend aus, ob ihr richtig getippt habt oder nicht. Verteilt
           entsprechend Punkte mit Hilfe der Punkte-Chips.
         </Typography>

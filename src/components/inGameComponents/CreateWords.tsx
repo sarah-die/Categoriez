@@ -80,8 +80,8 @@ export default function CreateWords() {
       flexDirection={"column"}
     >
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        You now have time to create your krazy wordz. Click the button below
-        when all players are finished.
+        Ihr habt nun Zeit eure "Krazy Wordz" zu legen. Wenn alle Spieler damit
+        fertig sind, drückt den Knopf.
       </Typography>
       <Grid2 container justifyContent={"center"}>
         <Button
@@ -90,19 +90,19 @@ export default function CreateWords() {
           sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
           onClick={() => revealCategoriez()}
         >
-          Reveal categoriez
+          Categoriez anzeigen
         </Button>
       </Grid2>
 
       <Grid2 container my={3}>
         <Typography color={"inherit"} variant={"body1"} my={3} mr={5}>
-          Category forgotten? Click here to show the category from
+          Category vergessen? Wähle deinen Spielernamen aus, um sie erneut anzeigen zu lassen.
         </Typography>
         <FormControl>
-          <InputLabel>Players</InputLabel>
+          <InputLabel>Spieler</InputLabel>
           <Select
             value={chosenPlayer.toString()}
-            label="Players"
+            label="Spieler"
             placeholder={ctx.currentPlayers[0]}
             onChange={(e) => setChosenPlayer(Number(e.target.value))}
           >
@@ -124,13 +124,13 @@ export default function CreateWords() {
             sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
             onClick={() => setCategoryShown("shown")}
           >
-            Show category
+            Category anzeigen
           </Button>
         </Grid2>
       ) : (
         <Grid2 container flexDirection={"column"}>
           <Typography color={"inherit"} variant={"body1"} my={1}>
-            Your category is
+            Deine Category ist
           </Typography>
           <Typography color={"inherit"} variant={"body2"} my={1}>
             {ctx.assignedCategoriez[chosenPlayer]}
@@ -142,7 +142,7 @@ export default function CreateWords() {
               sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
               onClick={() => setCategoryShown("hidden")}
             >
-              Hide category
+              Category verbergen
             </Button>
           </Grid2>
         </Grid2>

@@ -31,7 +31,7 @@ export const AccordionContinueGame = (props: {
       </AccordionSummary>
       <AccordionDetails>
         <Typography variant={"body1"} sx={{ mb: 3 }}>
-          You still have an ongoing game. Do you want to continue?
+          Euer Spiel läuft noch. Möchtet ihr weiterspielen?
         </Typography>
       </AccordionDetails>
       <AccordionActions>
@@ -43,7 +43,7 @@ export const AccordionContinueGame = (props: {
             component={Link}
             to={"/inGame"}
           >
-            Continue game
+            Spiel fortsetzen
           </Button>
           <Button
             variant={"contained"}
@@ -55,7 +55,7 @@ export const AccordionContinueGame = (props: {
               ctx.setGameStatus("noCurrentGame");
             }}
           >
-            dismiss
+            Kein Interesse
           </Button>
         </Grid2>
       </AccordionActions>

@@ -12,6 +12,7 @@ import Categoriez from "./routes/categoriez";
 import RuleBook from "./routes/ruleBook";
 import About from "./routes/about";
 import { GameProvider } from "./Context";
+import Impressum from "./routes/impressum";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -45,6 +46,10 @@ const router = createHashRouter([
           {
             path: "about",
             element: <About />,
+          },
+          {
+            path: "impressum",
+            element: <Impressum />,
           },
         ],
       },

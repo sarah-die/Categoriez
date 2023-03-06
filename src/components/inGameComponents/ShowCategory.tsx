@@ -40,7 +40,7 @@ function Hidden(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
   return (
     <Grid2 container flexDirection={"column"}>
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Hey {ctx.currentPlayers[props.cur]}, are you ready for your categeory?
+        Hey {ctx.currentPlayers[props.cur]}, bist du bereit für deine Kategorie?
       </Typography>
       <Grid2 container justifyContent={"center"}>
         <Button
@@ -49,7 +49,7 @@ function Hidden(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
           sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
           onClick={() => props.nextPlayer("shown")}
         >
-          Show category
+          Kategorie anzeigen
         </Button>
       </Grid2>
     </Grid2>
@@ -65,7 +65,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
   return (
     <Grid2 container flexDirection={"column"}>
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Your Category is:
+        Deine Category ist:
       </Typography>
       <Typography color={"inherit"} variant={"body2"} my={1}>
         {ctx.assignedCategoriez[props.cur]}
@@ -74,7 +74,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
         <></>
       ) : (
         <Typography color={"inherit"} variant={"body1"} my={1}>
-          Tap here to pass the turn onto the next player.
+          Drücke hier, um die Runde an den nächsten Spieler weiterzugeben.
         </Typography>
       )}
       <Grid2 container justifyContent={"center"}>
@@ -90,7 +90,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
         >
           {props.cur === ctx.currentPlayers.length - 1
             ? "Let's create some Krazy Wordz"
-            : "Next Player"}
+            : "Nächster Spieler"}
         </Button>
       </Grid2>
     </Grid2>

@@ -11,17 +11,12 @@ export default function About() {
         sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
       >
         <Typography color={"inherit"} variant={"body1"} m={3}>
-          At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-          kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-          amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-          diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-          erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-          et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-          Lorem ipsum dolor sit amet.
+          Liebe Besucher! Ich habe diese Website als Übung für mich erstellt, um
+          meine Kenntnisse der Frontend-Entwicklung zu vertiefen. Diese Website
+          dient keinen kommerziellen Zwecken und ist ein privates Projekt, was
+          zur privaten Nutzung gedacht ist.
         </Typography>
       </Grid2>
     </Grid2>
   );
 }
-
-// nicht zu kommerziellen Zwecken gedacht. Privates Projekt. Nur zur privaten Nutzung. Erstellt durch

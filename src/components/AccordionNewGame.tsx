@@ -98,29 +98,30 @@ export const AccordionNewGame = (props: {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography variant={"h4"}>Start a new Game</Typography>
+        <Typography variant={"h4"}>Neues Spiel starten</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography variant={"body1"} sx={{ mb: 3 }}>
-          Please select the number of players (3 - 8).
+          Bitte wählt die Anzahl Spieler (3 - 8).
         </Typography>
         <FormControl sx={{ minWidth: 150 }}>
-          <InputLabel>Player</InputLabel>
+          <InputLabel>Spieler</InputLabel>
           <Select
             value={ctx.currentPlayers.length.toString()}
-            label="Player"
+            label="Spieler"
             onChange={placeNameFields}
           >
-            <MenuItem value={3}>Three</MenuItem>
-            <MenuItem value={4}>Four</MenuItem>
-            <MenuItem value={5}>Five</MenuItem>
-            <MenuItem value={6}>Six</MenuItem>
-            <MenuItem value={7}>Seven</MenuItem>
-            <MenuItem value={8}>Eight</MenuItem>
+            <MenuItem value={3}>Drei</MenuItem>
+            <MenuItem value={4}>Vier</MenuItem>
+            <MenuItem value={5}>Fünf</MenuItem>
+            <MenuItem value={6}>Sechs</MenuItem>
+            <MenuItem value={7}>Sieben</MenuItem>
+            <MenuItem value={8}>Acht</MenuItem>
           </Select>
         </FormControl>
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
-          Please set a name for all of the {ctx.currentPlayers.length} players:
+          Tragt nun die Spielernamen für {ctx.currentPlayers.length} Spieler in
+          die folgenden Felder ein:
         </Typography>
         <Grid2 container p={2}>
           {ctx.currentPlayers.map((p, i) => {
@@ -128,7 +129,7 @@ export const AccordionNewGame = (props: {
               <TextField
                 required
                 label="Name"
-                placeholder={"Player " + (i + 1)}
+                placeholder={"Spieler " + (i + 1)}
                 sx={{ mr: 3, mb: 3 }}
                 value={ctx.currentPlayers[i]}
                 onChange={setPlayerNames(i)}
@@ -138,14 +139,15 @@ export const AccordionNewGame = (props: {
           })}
         </Grid2>
         <Typography variant={"body1"} mb={3}>
-          Choose a collection of categoriez to play with. If you don't want to
-          play with specific categoriez choose "All".
+          Wählt eine Kollektion aus Categoriez aus, mit der ihr spielen wollt.
+          Wenn ihr keine spezifischen verwenden wollt, setzt die Auswahl auf
+          "Alle".
         </Typography>
         <FormControl sx={{ minWidth: 150 }}>
-          <InputLabel>Collections</InputLabel>
+          <InputLabel>Kollektionen</InputLabel>
           <Select
-            label="Collections"
-            placeholder={"All"}
+            label="Kollektionen"
+            placeholder={"Alle"}
             value={ctx.chosenCollection}
             onChange={(e) => {
               ctx.setChosenCollection(e.target.value);
@@ -161,29 +163,28 @@ export const AccordionNewGame = (props: {
           </Select>
         </FormControl>
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
-          {" "}
-          Choose how many rounds you want to play - up to a maximum of 10
-          rounds. By default 6 rounds are played.
+          Setzt nun die Anzahl an Runden, die ihr spielen wollt. Das Maximum
+          sind 10 Runden. Standardmäßig werden 6 Runden gespielt.
         </Typography>
         <FormControl sx={{ minWidth: 150 }}>
-          <InputLabel>Rounds</InputLabel>
+          <InputLabel>Runden</InputLabel>
           <Select
             value={ctx.roundStatus.length.toString()}
-            label="Rounds"
+            label="Runden"
             onChange={(e) => {
               ctx.setRoundStatus(new Array(Number(e.target.value)).fill(0));
             }}
           >
-            <MenuItem value={1}>One</MenuItem>
-            <MenuItem value={2}>Two</MenuItem>
-            <MenuItem value={3}>Three</MenuItem>
-            <MenuItem value={4}>Four</MenuItem>
-            <MenuItem value={5}>Five</MenuItem>
-            <MenuItem value={6}>Six</MenuItem>
-            <MenuItem value={7}>Seven</MenuItem>
-            <MenuItem value={8}>Eight</MenuItem>
-            <MenuItem value={9}>Nine</MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={1}>Eine</MenuItem>
+            <MenuItem value={2}>Zwei</MenuItem>
+            <MenuItem value={3}>Drei</MenuItem>
+            <MenuItem value={4}>Vier</MenuItem>
+            <MenuItem value={5}>Fünf</MenuItem>
+            <MenuItem value={6}>Sechs</MenuItem>
+            <MenuItem value={7}>Sieben</MenuItem>
+            <MenuItem value={8}>Acht</MenuItem>
+            <MenuItem value={9}>Neun</MenuItem>
+            <MenuItem value={10}>Zehn</MenuItem>
           </Select>
         </FormControl>
       </AccordionDetails>
@@ -199,7 +200,7 @@ export const AccordionNewGame = (props: {
             setStatus();
           }}
         >
-          Start game
+          Let's go!
         </Button>
         <CustomSnackbar message={snackbarMessage}></CustomSnackbar>
       </AccordionActions>

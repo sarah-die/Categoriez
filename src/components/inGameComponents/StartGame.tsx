@@ -35,11 +35,15 @@ export default function StartGame() {
       flexDirection={"column"}
     >
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Welcome to round 1!
+        Willkommen in Runde 1!
       </Typography>
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        The first thing you will see are your assigned categoriez. You'll see
-        them in the following order:
+        Ihr solltet nun jeder eine Farbe gewählt haben und das entsprechende
+        Tableau und die Tippkarten vor euch liegen haben.
+      </Typography>
+      <Typography color={"inherit"} variant={"body1"} my={1}>
+        Ihr bekommt nun eure Categoriez zugeordnet. Diese werden euch in
+        der folgenden Reihenfolge angezeigt:
       </Typography>
       <Grid2 container flexDirection={"row"} spacing={5}>
         {ctx.currentPlayers.map((p, i) => {
@@ -63,11 +67,11 @@ export default function StartGame() {
         })}
       </Grid2>
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Make sure that only the player whose name is displayed sees the
-        category.
+        Stellt sicher, dass nur der Spieler, dessen Name angezeigt wird, die
+        Category sieht.
       </Typography>
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Press the button when you are ready for your categoriez!
+        Drückt den Knopf, wenn ihr bereit seid.
       </Typography>
       <Grid2 container justifyContent={"center"}>
         <Button
