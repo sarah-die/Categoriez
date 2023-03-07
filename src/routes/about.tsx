@@ -10,6 +10,9 @@ export default function About() {
         m={{ xs: 2, md: 9 }}
         sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
       >
+        <Typography color={"inherit"} variant={"body2"} m={3}>
+          About
+        </Typography>
         <Typography color={"inherit"} variant={"body1"} m={3}>
           Liebe Besucher! Ich habe diese Website als Übung für mich erstellt, um
           meine Kenntnisse der Frontend-Entwicklung zu vertiefen. Diese Website

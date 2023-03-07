@@ -13,6 +13,9 @@ export default function Categoriez() {
         p={4}
         sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
       >
+        <Typography color={"inherit"} variant={"body2"} m={3}>
+          Categoriez
+        </Typography>
         <Typography color={"inherit"} variant={"body1"} mb={2}>
           Diese Seite gibt euch eine Übersicht über existierende Kollektionen
           und deren Categoriez.
