@@ -48,7 +48,7 @@ export default function RootAppBar() {
         overflowX: "hidden",
       }}
     >
-      <AppBar sx={{ backgroundColor: "primary.light" }}>
+      <AppBar sx={{ backgroundColor: "background.paper" }}>
         {/*xs/md is necessary here to override the default media query padding of MUI*/}
         <Container maxWidth={false} sx={{ px: { xs: 4, md: 11 } }}>
           <Toolbar disableGutters>
@@ -127,7 +127,7 @@ export default function RootAppBar() {
               {pages.map((page) => (
                 <Button
                   key={page.label}
-                  sx={{ my: 2, color: "inherit", display: "block" }}
+                  sx={{ my: 2, color: "#ced2dc", display: "block" }}
                   size={"large"}
                   component={RouterLink}
                   to={page.href}

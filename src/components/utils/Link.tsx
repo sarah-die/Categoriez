@@ -5,5 +5,5 @@ import {
 } from "react-router-dom";
 
 export const Link = (props: MuiLinkProps & RouterLinkProps) => {
-  return <MuiLink component={RouterLink} {...props} sx={{textDecoration: "none", color: "black"}} />;
+  return <MuiLink component={RouterLink} {...props} sx={{textDecoration: "none", color: "#a6afc3"}} />;
 };
