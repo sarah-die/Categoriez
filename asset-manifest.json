@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Categoriez/static/css/main.ec81f792.css",
-    "main.js": "/Categoriez/static/js/main.2c713595.js",
+    "main.js": "/Categoriez/static/js/main.ef495e14.js",
     "static/js/787.9d79ccaf.chunk.js": "/Categoriez/static/js/787.9d79ccaf.chunk.js",
     "static/media/ibm-plex-sans-all-300-normal.woff": "/Categoriez/static/media/ibm-plex-sans-all-300-normal.2eee09e61eeb0daf4220.woff",
     "static/media/ibm-plex-sans-latin-300-normal.woff2": "/Categoriez/static/media/ibm-plex-sans-latin-300-normal.f598a9018023874fcb06.woff2",
@@ -12,11 +12,11 @@
     "static/media/ibm-plex-sans-vietnamese-300-normal.woff2": "/Categoriez/static/media/ibm-plex-sans-vietnamese-300-normal.10dfce0baf529bc049a6.woff2",
     "index.html": "/Categoriez/index.html",
     "main.ec81f792.css.map": "/Categoriez/static/css/main.ec81f792.css.map",
-    "main.2c713595.js.map": "/Categoriez/static/js/main.2c713595.js.map",
+    "main.ef495e14.js.map": "/Categoriez/static/js/main.ef495e14.js.map",
     "787.9d79ccaf.chunk.js.map": "/Categoriez/static/js/787.9d79ccaf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ec81f792.css",
-    "static/js/main.2c713595.js"
+    "static/js/main.ef495e14.js"
   ]
 }
