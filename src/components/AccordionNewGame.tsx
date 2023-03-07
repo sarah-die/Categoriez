@@ -120,10 +120,10 @@ export const AccordionNewGame = (props: {
           </Select>
         </FormControl>
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
-          Tragt nun die Spielernamen für {ctx.currentPlayers.length} Spieler in
+          Tragt nun die Spielernamen für alle {ctx.currentPlayers.length} Spieler in
           die folgenden Felder ein:
         </Typography>
-        <Grid2 container p={2}>
+        <Grid2 container >
           {ctx.currentPlayers.map((p, i) => {
             return (
               <TextField

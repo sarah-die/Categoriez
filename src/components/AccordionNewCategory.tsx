@@ -70,7 +70,7 @@ export const AccordionNewCategory = (props: {
           value={catVal}
           onChange={(e) => setCatVal(e.target.value)}
         ></TextField>
-        <Grid2 container px={2} alignContent={"flex-start"} rowSpacing={1}>
+        <Grid2 container alignContent={"flex-start"} rowSpacing={1}>
           <FormControl sx={{ mr: 3, mb: 3, minWidth: 150 }}>
             <InputLabel>Collections</InputLabel>
             <Select
