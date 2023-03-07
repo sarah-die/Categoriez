@@ -14,30 +14,30 @@ export default function ControlledAccordion() {
       setExpanded(isExpanded ? panel : false);
     };
   return (
-    <Grid2 container spacing={4}>
-      <Grid2>
-        <Grid2 xs={12}>
-          {ctx.gameStatus === "noCurrentGame" ? (
-            <></>
-          ) : (
+    <Grid2 container>
+      <Grid2 xs={12}>
+        {ctx.gameStatus === "noCurrentGame" ? (
+          <></>
+        ) : (
+          <Grid2 mb={4}>
             <AccordionContinueGame
               expanded={expanded === "panel1"}
               onChange={handleAccordionChange("panel1")}
             ></AccordionContinueGame>
-          )}
-        </Grid2>
-        <Grid2 xs={12}>
-          <AccordionNewGame
-            expanded={expanded === "panel2"}
-            onChange={handleAccordionChange("panel2")}
-          ></AccordionNewGame>
-        </Grid2>
-        <Grid2 xs={12}>
-          <AccordionNewCategory
-            expanded={expanded === "panel3"}
-            onChange={handleAccordionChange("panel3")}
-          ></AccordionNewCategory>
-        </Grid2>
+          </Grid2>
+        )}
+      </Grid2>
+      <Grid2 xs={12} mb={4}>
+        <AccordionNewGame
+          expanded={expanded === "panel2"}
+          onChange={handleAccordionChange("panel2")}
+        ></AccordionNewGame>
+      </Grid2>
+      <Grid2 xs={12}>
+        <AccordionNewCategory
+          expanded={expanded === "panel3"}
+          onChange={handleAccordionChange("panel3")}
+        ></AccordionNewCategory>
       </Grid2>
     </Grid2>
   );
