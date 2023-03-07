@@ -10,17 +10,16 @@ export default function Categoriez() {
       <Grid2
         xs={12}
         m={{ xs: 2, md: 9 }}
-        p={4}
         sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
       >
         <Typography color={"inherit"} variant={"body2"} m={3}>
           Categoriez
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} mb={2}>
+        <Typography color={"inherit"} variant={"body1"} m={3}>
           Diese Seite gibt euch eine Übersicht über existierende Kollektionen
           und deren Categoriez.
         </Typography>
-        <Grid container spacing={{ xs: 2, md: 3 }}>
+        <Grid container spacing={{ xs: 2, md: 3 }} p={3} >
           {ctx.collections.map((c) => {
             return (
               <Grid item xs={12} md={6}>
