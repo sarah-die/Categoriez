@@ -25,7 +25,7 @@ export const AccordionNewCategory = (props: {
 }) => {
   const ctx = useGameContext();
 
-  const [catVal, setCatVal] = useState<string>("");
+  const [newCategory, setNewCategory] = useState<string>("");
 
   const [selectedCollection, setSelectedCollection] = useState<string>("new");
 
@@ -33,14 +33,60 @@ export const AccordionNewCategory = (props: {
 
   const [snackbarMessage, setSnackbarMessage] = useState<string>("Error");
 
+  const checkConditionsForNewCat = () => {
+    const checkForCategoryDuplicates = () => {
+      const curCollection: number = ctx.collections.findIndex(
+        (col) => col.name === selectedCollection
+      );
+      return ctx.collections[curCollection].categoriez.some(
+        (cat) => cat === newCategory
+      );
+    };
+
+    const checkForCollectionDuplicates = () => {
+      return ctx.collections.some((col) => col.name === newCollection);
+    };
+
+    if (newCategory === "") {
+      setSnackbarMessage("Bitte trage einen Namen für die neue Category ein.");
+      ctx.setSnackbarOpen(true);
+      return false;
+    } else if (selectedCollection === "new" && newCollection === "") {
+      setSnackbarMessage(
+        "Bitte trage einen Namen für die neue Kollektion ein."
+      );
+      ctx.setSnackbarOpen(true);
+      return false;
+    } else if (checkForCategoryDuplicates()) {
+      setSnackbarMessage(
+        "Diese Category ist schon vorhanden. Hast du noch andere Ideen?"
+      );
+      ctx.setSnackbarOpen(true);
+      return false;
+    } else if (checkForCollectionDuplicates()) {
+      // ToDo does not work so far..
+      setSnackbarMessage(
+        "Diese Kollektion ist schon vorhanden. Hast du noch andere Ideen?"
+      );
+      ctx.setSnackbarOpen(true);
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const saveNewCategoryLocal = () => {
+    if (!checkConditionsForNewCat()) {
+      return;
+    }
+
     ctx.saveCategoryToCollection(
       selectedCollection === "new" ? newCollection : selectedCollection,
-      catVal
+      newCategory
     );
     setSnackbarMessage("Die neue Kategorie wurde gespeichert.");
     ctx.setSnackbarOpen(true);
-    setCatVal("");
+    setNewCategory("");
     setNewCollection("");
     setSelectedCollection("new");
   };
@@ -67,8 +113,8 @@ export const AccordionNewCategory = (props: {
           label="Neue Category"
           placeholder={"Neu entdeckte Käferart"}
           sx={{ mr: 3, mb: 3 }}
-          value={catVal}
-          onChange={(e) => setCatVal(e.target.value)}
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
         ></TextField>
         <Grid2 container alignContent={"flex-start"} rowSpacing={1}>
           <FormControl sx={{ mr: 3, mb: 3, minWidth: 150 }}>
