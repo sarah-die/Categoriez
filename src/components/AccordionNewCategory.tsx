@@ -51,22 +51,21 @@ export const AccordionNewCategory = (props: {
       setSnackbarMessage("Bitte trage einen Namen für die neue Category ein.");
       ctx.setSnackbarOpen(true);
       return false;
+    } else if (checkForCollectionDuplicates()) {
+      setSnackbarMessage(
+        "Diese Kollektion ist schon vorhanden. Hast du noch andere Ideen?"
+      );
+      ctx.setSnackbarOpen(true);
+      return false;
     } else if (selectedCollection === "new" && newCollection === "") {
       setSnackbarMessage(
         "Bitte trage einen Namen für die neue Kollektion ein."
       );
       ctx.setSnackbarOpen(true);
       return false;
-    } else if (checkForCategoryDuplicates()) {
+    } else if (selectedCollection !== "new" && checkForCategoryDuplicates()) {
       setSnackbarMessage(
         "Diese Category ist schon vorhanden. Hast du noch andere Ideen?"
-      );
-      ctx.setSnackbarOpen(true);
-      return false;
-    } else if (checkForCollectionDuplicates()) {
-      // ToDo does not work so far..
-      setSnackbarMessage(
-        "Diese Kollektion ist schon vorhanden. Hast du noch andere Ideen?"
       );
       ctx.setSnackbarOpen(true);
       return false;
