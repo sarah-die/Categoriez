@@ -4,12 +4,11 @@ import React from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useGameContext } from "../../Context";
-import { mainTheme } from "../../mainTheme";
 
 /** Customized Snackbar to inform the user over errors. The shown message is variable. */
 export const CustomSnackbar = (props: {
   message: string;
-  customColor?: string
+  customColor?: string;
 }) => {
   const ctx = useGameContext();
   const handleClose = (
@@ -41,17 +40,16 @@ export const CustomSnackbar = (props: {
         {...props}
         open={ctx.snackbarStatus}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        autoHideDuration={6000}
+        autoHideDuration={5000}
         TransitionComponent={Slide}
-        transitionDuration={{ enter: 1000, exit: 2000 }}
-        TransitionProps={{ enter: true, exit: false }}
+        transitionDuration={{ enter: 300, exit: 2000 }}
+        TransitionProps={{ enter: true, exit: true }}
         onClose={handleClose}
         action={action}
-        // ToDo wenn eine customColor übergeben wird, verweden diese, sonst verwende den Standard (s.u.)
         // use SnackbarContent API to access style components
         sx={{
           "& .MuiSnackbarContent-root": {
-            backgroundColor: props.customColor || mainTheme.palette.secondary.main,
+            backgroundColor: props.customColor || "#cca000",
             px: 2,
             py: 1,
           },
