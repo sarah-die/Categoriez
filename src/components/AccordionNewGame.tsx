@@ -41,12 +41,12 @@ export const AccordionNewGame = (props: {
 
   const checkForEmptyNameFields = () => {
     if (ctx.currentPlayers.some((p) => p === "")) {
-      setSnackbarMessage("Please enter a name for every player.");
+      setSnackbarMessage("Tragt bitte für jeden Spieler einen Namen ein.");
       ctx.setSnackbarOpen(true);
       return false;
     } else if (ctx.currentPlayers.some((p) => p === " ")) {
       setSnackbarMessage(
-        "Please make sure that every name contains at least one character."
+        "Stellt sicher, dass jeder Spielername mindestens ein Schriftzeichen enthält."
       );
       ctx.setSnackbarOpen(true);
     } else {
@@ -58,7 +58,9 @@ export const AccordionNewGame = (props: {
     const array: string[] = ctx.currentPlayers.filter((p) => p !== "");
     const setFromArray = new Set(array);
     if (array.length !== setFromArray.size) {
-      setSnackbarMessage("Please choose a different name for every player.");
+      setSnackbarMessage(
+        "Die Spielernamen müssen sich voneinander unterscheiden."
+      );
       ctx.setSnackbarOpen(true);
       return false;
     } else {
@@ -81,8 +83,49 @@ export const AccordionNewGame = (props: {
     ctx.setPlayers(newPlayers);
   };
 
+  const checkAmountOfCategoriez = () => {
+    const chosenColIndex = ctx.collections.findIndex(
+      (c) => c.id === ctx.chosenCollection
+    );
+
+    if (chosenColIndex === -1) {
+      setSnackbarMessage(
+        "Die Kollektion, die ihr gewählt habt, enthält leider nicht genug Categoriez. Wählt eine andere oder reduziert die Anzahl an Spielern oder Runden."
+      );
+      ctx.setSnackbarOpen(true);
+      return true;
+    }
+
+    const numberOfCategoriez: number =
+      ctx.collections[chosenColIndex].categoriez.length;
+    const numberOfPlayers: number = ctx.currentPlayers.length;
+    const numberOfRounds: number = ctx.roundStatus.length;
+    let necessaryNumberOfCategoriez: number;
+
+    if (numberOfPlayers <= 6) {
+      necessaryNumberOfCategoriez = 6;
+    } else if (numberOfPlayers <= 7) {
+      necessaryNumberOfCategoriez = 7;
+    } else {
+      necessaryNumberOfCategoriez = 8;
+    }
+
+    if (numberOfCategoriez < necessaryNumberOfCategoriez * numberOfRounds) {
+      setSnackbarMessage(
+        "Die Kollektion, die ihr gewählt habt, enthält leider nicht genug Categoriez. Wählt eine andere oder reduziert die Anzahl an Spielern oder Runden."
+      );
+      ctx.setSnackbarOpen(true);
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const setStatus = () => {
     if (playernameConditions) {
+      if (checkAmountOfCategoriez()) {
+        return;
+      }
       ctx.setGameStatus("ongoing");
       ctx.setInGameStatus("start");
     } else {
@@ -120,10 +163,10 @@ export const AccordionNewGame = (props: {
           </Select>
         </FormControl>
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
-          Tragt nun die Spielernamen für alle {ctx.currentPlayers.length} Spieler in
-          die folgenden Felder ein:
+          Tragt nun die Spielernamen für alle {ctx.currentPlayers.length}{" "}
+          Spieler in die folgenden Felder ein:
         </Typography>
-        <Grid2 container >
+        <Grid2 container>
           {ctx.currentPlayers.map((p, i) => {
             return (
               <TextField
