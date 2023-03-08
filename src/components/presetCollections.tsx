@@ -1,11 +1,11 @@
 import { Collection } from "../Context";
 
 export const presetCollections: Collection[] = [
-  {
-    name: "All",
-    id: "preset-collecction-all",
-    categoriez: [],
-  },
+  // {
+  //   name: "All",
+  //   id: "preset-collecction-all",
+  //   categoriez: [],
+  // },
   {
     name: "Essen und Trinken",
     id: "preset-collecction1",
@@ -225,6 +225,6 @@ export const presetCollections: Collection[] = [
       "Neue Ballsportart",
       "Tanzstil",
       "Japanische Kampfsportart",
-    ]
-  }
+    ],
+  },
 ];
