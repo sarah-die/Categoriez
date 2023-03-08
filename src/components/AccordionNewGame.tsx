@@ -190,7 +190,6 @@ export const AccordionNewGame = (props: {
           <InputLabel>Kollektionen</InputLabel>
           <Select
             label="Kollektionen"
-            placeholder={"Alle"}
             value={ctx.chosenCollection}
             onChange={(e) => {
               ctx.setChosenCollection(e.target.value);
