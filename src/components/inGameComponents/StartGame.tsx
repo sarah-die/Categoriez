@@ -39,11 +39,12 @@ export default function StartGame() {
       </Typography>
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Ihr solltet nun jeder eine Farbe gewählt haben und das entsprechende
-        Tableau und die Tippkarten vor euch liegen haben.
+        Tableau und die Tippkarten aus dem Brettspiel "Krazy Wordy" vor euch
+        liegen haben.
       </Typography>
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Ihr bekommt nun eure Categoriez zugeordnet. Diese werden euch in
-        der folgenden Reihenfolge angezeigt:
+        Ihr bekommt nun eure Categoriez zugeordnet. Diese werden euch in der
+        folgenden Reihenfolge angezeigt:
       </Typography>
       <Grid2 container flexDirection={"row"} spacing={5}>
         {ctx.currentPlayers.map((p, i) => {
