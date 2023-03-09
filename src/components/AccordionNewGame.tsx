@@ -41,12 +41,12 @@ export const AccordionNewGame = (props: {
 
   const checkForEmptyNameFields = () => {
     if (ctx.currentPlayers.some((p) => p === "")) {
-      setSnackbarMessage("Tragt bitte für jeden Spieler einen Namen ein.");
+      setSnackbarMessage("Bitte tragt für jeden Spieler einen Namen ein.");
       ctx.setSnackbarOpen(true);
       return false;
     } else if (ctx.currentPlayers.some((p) => p === " ")) {
       setSnackbarMessage(
-        "Stellt sicher, dass jeder Spielername mindestens ein Schriftzeichen enthält."
+        "Bitte stellt sicher, dass jeder Spielername mindestens ein Schriftzeichen enthält."
       );
       ctx.setSnackbarOpen(true);
     } else {
@@ -55,7 +55,10 @@ export const AccordionNewGame = (props: {
   };
 
   const checkForNameDuplicates = () => {
-    const array: string[] = ctx.currentPlayers.filter((p) => p !== "");
+    const array: string[] = ctx.currentPlayers
+      .filter((p) => p !== "")
+      .map((p) => p.toLowerCase());
+
     const setFromArray = new Set(array);
     if (array.length !== setFromArray.size) {
       setSnackbarMessage(
