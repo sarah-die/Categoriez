@@ -28,9 +28,10 @@ export default function Reveal() {
       >
         <Typography color={"inherit"} variant={"body1"} my={1}>
           Hier sind eure Categoriez. Nehmt euch nun die Zeit zu erraten wer
-          welche Category gelegt hat. Wertet anschließend, vom Startspieler ({}
-          ) beginnend aus, ob ihr richtig getippt habt oder nicht. Verteilt
-          entsprechend Punkte mit Hilfe der Punkte-Chips.
+          welche Category gelegt hat. Wertet anschließend, vom Startspieler dieser Runde (
+          {ctx.currentPlayers[ctx.roundStatus.indexOf(0) % ctx.currentPlayers.length]}) beginnend aus,
+          ob ihr richtig getippt habt oder nicht. Verteilt entsprechend Punkte
+          mit Hilfe der Punkte-Chips.
         </Typography>
         <Grid2 container flexDirection={"row"} spacing={3}>
           {ctx.assignedCategoriez.map((c, index) => {
