@@ -27,7 +27,7 @@ export const AccordionContinueGame = (props: {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography variant={"h4"}>Continue Game</Typography>
+        <Typography variant={"h4"}>Spiel fortsetzen</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography variant={"body1"} sx={{ mb: 3 }}>
