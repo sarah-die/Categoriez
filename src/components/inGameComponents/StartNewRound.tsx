@@ -32,11 +32,9 @@ export default function StartNewRound() {
       flexDirection={"column"}
     >
       <Typography color={"inherit"} variant={"body1"} my={1}>
-        Ihr seid nun in Runde {ctx.roundStatus.indexOf(0) + 1}. Der neue
-        Startspieler ist {}.
-      </Typography>
-      <Typography color={"inherit"} variant={"body1"} my={1}>
-        Startet die nächste Runde mit Klick auf den Button.
+        Ihr seid nun in Runde {ctx.roundStatus.indexOf(0) + 1}. Wenn ihr bereit
+        für eure neuen Kategorien seid, startet die neue Runde mit Klick auf den
+        Button.
       </Typography>
       <Grid2 container justifyContent={"center"}>
         <Button
