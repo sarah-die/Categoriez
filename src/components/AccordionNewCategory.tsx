@@ -39,12 +39,12 @@ export const AccordionNewCategory = (props: {
         (col) => col.name === selectedCollection
       );
       return ctx.collections[curCollection].categoriez.some(
-        (cat) => cat === newCategory
+        (cat) => cat.toLowerCase() === newCategory.toLowerCase()
       );
     };
 
     const checkForCollectionDuplicates = () => {
-      return ctx.collections.some((col) => col.name === newCollection);
+      return ctx.collections.some((col) => col.name.toLowerCase() === newCollection.toLowerCase());
     };
 
     if (newCategory === "") {
