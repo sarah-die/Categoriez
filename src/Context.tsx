@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import { presetCollections } from "./components/presetCollections";
 
 // globally available props
-type contextType = {
+export type contextType = {
   gameStatus: GameStatus;
   setGameStatus: (g: GameStatus) => void;
   inGameStatus: InGameStatus;
@@ -17,6 +17,8 @@ type contextType = {
   saveCategoryToCollection: (colName: string, newCat: string) => void;
   snackbarStatus: boolean;
   setSnackbarOpen: (s: boolean) => void;
+  snackbarMessage: string;
+  setSnackbarMessage: (m: string) => void;
   assignedCategoriez: string[];
   setAssignedCategoriez: (c: string[]) => void;
   categoriezWhitelist: number[];
@@ -42,6 +44,7 @@ export const initial: Partial<contextType> = {
   inGameStatus: "start",
   roundStatus: new Array(6).fill(0),
   currentPlayers: new Array(3).fill(""),
+  snackbarMessage: "Error",
   assignedCategoriez: [],
   categoriezWhitelist: [],
   chosenCollection: presetCollections[0].id,
@@ -89,6 +92,10 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
   };
 
   const [snackbarStatus, setSnackbarOpen] = useState<boolean>(false);
+  const [snackbarMessage, setSnackbarMessage] = useState<string>(
+    initial.snackbarMessage!
+  );
+
   const [assignedCategoriez, setAssignedCategoriez] = useState<string[]>(
     initial.assignedCategoriez!
   );
@@ -115,6 +122,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         saveCategoryToCollection,
         snackbarStatus,
         setSnackbarOpen,
+        snackbarMessage,
+        setSnackbarMessage,
         assignedCategoriez,
         setAssignedCategoriez,
         categoriezWhitelist,

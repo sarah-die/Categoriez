@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useGameContext } from "../Context";
 import { CustomSnackbar } from "./utils/CustomSnackbar";
+import { checkConditionsForNewCat } from "./utils/checkConditionsForNewCat";
 
 /** This component is for adding a new category. The player can add it to an existing collection or create a new one. */
 export const AccordionNewCategory = (props: {
@@ -26,64 +27,30 @@ export const AccordionNewCategory = (props: {
   const ctx = useGameContext();
 
   const [newCategory, setNewCategory] = useState<string>("");
-
+  const [newCollection, setNewCollection] = useState<string>("");
   const [selectedCollection, setSelectedCollection] = useState<string>("new");
 
-  const [newCollection, setNewCollection] = useState<string>("");
-
-  const [snackbarMessage, setSnackbarMessage] = useState<string>("Error");
-
-  const checkConditionsForNewCat = () => {
-    const checkForCategoryDuplicates = () => {
-      const curCollection: number = ctx.collections.findIndex(
-        (col) => col.name === selectedCollection
-      );
-      return ctx.collections[curCollection].categoriez.some(
-        (cat) => cat.toLowerCase() === newCategory.toLowerCase()
-      );
-    };
-
-    const checkForCollectionDuplicates = () => {
-      return ctx.collections.some((col) => col.name.toLowerCase() === newCollection.toLowerCase());
-    };
-
-    if (newCategory === "") {
-      setSnackbarMessage("Bitte trage einen Namen für die neue Category ein.");
-      ctx.setSnackbarOpen(true);
-      return false;
-    } else if (checkForCollectionDuplicates()) {
-      setSnackbarMessage(
-        "Diese Kollektion ist schon vorhanden. Hast du noch andere Ideen?"
-      );
-      ctx.setSnackbarOpen(true);
-      return false;
-    } else if (selectedCollection === "new" && newCollection === "") {
-      setSnackbarMessage(
-        "Bitte trage einen Namen für die neue Kollektion ein."
-      );
-      ctx.setSnackbarOpen(true);
-      return false;
-    } else if (selectedCollection !== "new" && checkForCategoryDuplicates()) {
-      setSnackbarMessage(
-        "Diese Category ist schon vorhanden. Hast du noch andere Ideen?"
-      );
-      ctx.setSnackbarOpen(true);
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   const saveNewCategoryLocal = () => {
-    if (!checkConditionsForNewCat()) {
+    const trimmedCat: string = newCategory.trim();
+    const trimmedCol: string = newCollection.trim();
+    const check = checkConditionsForNewCat(
+      trimmedCat,
+      trimmedCol,
+      selectedCollection,
+      ctx
+    );
+
+    if (!check) {
       return;
     }
 
     ctx.saveCategoryToCollection(
-      selectedCollection === "new" ? newCollection : selectedCollection,
-      newCategory
+      selectedCollection === "new" ? trimmedCol : selectedCollection,
+      trimmedCat
     );
-    setSnackbarMessage("Die neue Kategorie wurde gespeichert.");
+    setNewCategory(trimmedCat);
+    setNewCollection(trimmedCol);
+    ctx.setSnackbarMessage("Die neue Kategorie wurde gespeichert.");
     ctx.setSnackbarOpen(true);
     setNewCategory("");
     setNewCollection("");
@@ -153,7 +120,7 @@ export const AccordionNewCategory = (props: {
         >
           Category hinzufügen
         </Button>
-        <CustomSnackbar message={snackbarMessage}></CustomSnackbar>
+        <CustomSnackbar message={ctx.snackbarMessage}></CustomSnackbar>
       </AccordionActions>
     </Accordion>
   );
