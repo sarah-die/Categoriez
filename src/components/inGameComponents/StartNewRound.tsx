@@ -7,14 +7,15 @@ export default function StartNewRound() {
 
   const assignCategoriez = () => {
     const newAssignedCategoriez = new Array(ctx.currentPlayers.length);
-    const chosenColIndex: number = ctx.collections.findIndex(
-      (c) => c.id === ctx.chosenCollection
+
+    const allCat: string[] = ctx.chosenCollections.flatMap(
+      (colID) => ctx.collections.find((col) => col.id === colID)!.categoriez
     );
+
     const whiteList: number[] = [...ctx.categoriezWhitelist];
     ctx.currentPlayers.forEach((p, i) => {
       const random = Math.floor(Math.random() * whiteList.length);
-      newAssignedCategoriez[i] =
-        ctx.collections[chosenColIndex].categoriez[whiteList[random]];
+      newAssignedCategoriez[i] = allCat[whiteList[random]];
       whiteList.splice(random, 1);
     });
     ctx.setCategoriezWhitelist(whiteList);

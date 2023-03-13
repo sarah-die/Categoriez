@@ -16,7 +16,7 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useGameContext } from "../Context";
+import { Collection, useGameContext } from "../Context";
 import { Link } from "react-router-dom";
 import { CustomSnackbar } from "./utils/CustomSnackbar";
 
@@ -87,20 +87,12 @@ export const AccordionNewGame = (props: {
   };
 
   const checkAmountOfCategoriez = () => {
-    const chosenColIndex = ctx.collections.findIndex(
-      (c) => c.id === ctx.chosenCollection
-    );
-
-    if (chosenColIndex === -1) {
-      setSnackbarMessage(
-        "Die Kollektion, die ihr gewählt habt, enthält leider nicht genug Categoriez. Wählt eine andere oder reduziert die Anzahl an Spielern oder Runden."
-      );
-      ctx.setSnackbarOpen(true);
-      return true;
-    }
-
-    const numberOfCategoriez: number =
-      ctx.collections[chosenColIndex].categoriez.length;
+    const numberOfCategoriez: number = ctx.chosenCollections
+      .map(
+        (colID) =>
+          ctx.collections.find((col) => col.id === colID)!.categoriez.length
+      )
+      .reduce((acc, cur) => acc + cur);
     const numberOfPlayers: number = ctx.currentPlayers.length;
     const numberOfRounds: number = ctx.roundStatus.length;
     let necessaryNumberOfCategoriez: number;
@@ -186,17 +178,19 @@ export const AccordionNewGame = (props: {
         </Grid2>
         <Typography variant={"body1"} mb={3}>
           Wählt eine Kollektion aus Categoriez aus, mit der ihr spielen wollt.
-          Wenn ihr keine spezifischen verwenden wollt, setzt die Auswahl auf
-          "Alle".
+          Wenn euch eine Kollektion nicht genug ist oder diese nicht genug
+          Categoriez enthält, könnt ihr über den Multi-Select mehrere
+          Kollektionen auswählen.
         </Typography>
         <FormControl sx={{ minWidth: 150 }}>
           <InputLabel>Kollektionen</InputLabel>
           <Select
             label="Kollektionen"
-            value={ctx.chosenCollection}
+            value={ctx.chosenCollections}
             onChange={(e) => {
-              ctx.setChosenCollection(e.target.value);
+              ctx.setChosenCollections(e.target.value as Collection["id"][]);
             }}
+            multiple
           >
             {ctx.collections.map((col) => {
               return (

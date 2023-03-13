@@ -36,8 +36,8 @@ export default function CreateWords() {
   // add more categoriez according to the gamerules
   const drawExtraCategoriez = () => {
     const assignedCatPlusExtraCat: string[] = [...ctx.assignedCategoriez];
-    const chosenColIndex: number = ctx.collections.findIndex(
-      (c) => c.id === ctx.chosenCollection
+    const allCat: string[] = ctx.chosenCollections.flatMap(
+      (colID) => ctx.collections.find((col) => col.id === colID)!.categoriez
     );
     const whiteList: number[] = [...ctx.categoriezWhitelist];
 
@@ -54,9 +54,7 @@ export default function CreateWords() {
     }
     for (let i = 0; i < n; i++) {
       const random = Math.floor(Math.random() * whiteList.length);
-      assignedCatPlusExtraCat.push(
-        ctx.collections[chosenColIndex].categoriez[whiteList[random]]
-      );
+      assignedCatPlusExtraCat.push(allCat[whiteList[random]]);
       whiteList.splice(random, 1);
     }
     const shuffledCat: string[] = fisherYates(assignedCatPlusExtraCat);
@@ -96,7 +94,8 @@ export default function CreateWords() {
 
       <Grid2 container my={3}>
         <Typography color={"inherit"} variant={"body1"} my={3} mr={5}>
-          Category vergessen? Wähle deinen Spielernamen aus, um sie erneut anzeigen zu lassen.
+          Category vergessen? Wähle deinen Spielernamen aus, um sie erneut
+          anzeigen zu lassen.
         </Typography>
         <FormControl>
           <InputLabel>Spieler</InputLabel>

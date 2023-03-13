@@ -23,8 +23,8 @@ export type contextType = {
   setAssignedCategoriez: (c: string[]) => void;
   categoriezWhitelist: number[];
   setCategoriezWhitelist: (w: number[]) => void;
-  chosenCollection: Collection["id"];
-  setChosenCollection: (c: Collection["id"]) => void;
+  chosenCollections: Collection["id"][];
+  setChosenCollections: (c: Collection["id"][]) => void;
 };
 
 // new context with initial values
@@ -47,7 +47,7 @@ export const initial: Partial<contextType> = {
   snackbarMessage: "Error",
   assignedCategoriez: [],
   categoriezWhitelist: [],
-  chosenCollection: presetCollections[0].id,
+  chosenCollections: [presetCollections[0].id],
 };
 
 export const GameProvider = (props: { children: React.ReactNode }) => {
@@ -102,8 +102,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
   const [categoriezWhitelist, setCategoriezWhitelist] = useState<number[]>(
     initial.categoriezWhitelist!
   );
-  const [chosenCollection, setChosenCollection] = useState<Collection["id"]>(
-    initial.chosenCollection!
+  const [chosenCollection, setChosenCollection] = useState<Collection["id"][]>(
+    initial.chosenCollections!
   );
 
   return (
@@ -128,8 +128,8 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
         setAssignedCategoriez,
         categoriezWhitelist,
         setCategoriezWhitelist,
-        chosenCollection,
-        setChosenCollection,
+        chosenCollections: chosenCollection,
+        setChosenCollections: setChosenCollection,
       }}
     >
       {props.children}

@@ -12,6 +12,6 @@ export const useResetGame = () => {
     ctx.setRoundStatus(initial.roundStatus!);
     ctx.setAssignedCategoriez(initial.assignedCategoriez!);
     ctx.setCategoriezWhitelist(initial.categoriezWhitelist!);
-    ctx.setChosenCollection(initial.chosenCollection!);
+    ctx.setChosenCollections(initial.chosenCollections!);
   }, [ctx]);
 };
