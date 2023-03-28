@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { presetCollections } from "./components/presetCollections";
 
@@ -51,15 +51,28 @@ export const initial: Partial<contextType> = {
 };
 
 export const GameProvider = (props: { children: React.ReactNode }) => {
-  const [gameStatus, setGameStatus] = useState<GameStatus>(initial.gameStatus!);
+  const [gameStatus, setGameStatus] = useState<GameStatus>(
+    JSON.parse(
+      sessionStorage.getItem("gameStatus") || JSON.stringify(initial.gameStatus)
+    )
+  );
   const [inGameStatus, setInGameStatus] = useState<InGameStatus>(
-    initial.inGameStatus!
+    JSON.parse(
+      sessionStorage.getItem("inGameStatus") ||
+        JSON.stringify(initial.inGameStatus)
+    )
   );
   const [roundStatus, setRoundStatus] = useState<number[]>(
-    initial.roundStatus!
+    JSON.parse(
+      sessionStorage.getItem("roundStatus") ||
+        JSON.stringify(initial.roundStatus)
+    )
   );
   const [currentPlayers, setPlayers] = useState<string[]>(
-    initial.currentPlayers!
+    JSON.parse(
+      sessionStorage.getItem("currentPlayers") ||
+        JSON.stringify(initial.currentPlayers)
+    )
   );
   const [collections, setCollections] = useState<Collection[]>(
     JSON.parse(
@@ -97,14 +110,61 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
   );
 
   const [assignedCategoriez, setAssignedCategoriez] = useState<string[]>(
-    initial.assignedCategoriez!
+    JSON.parse(
+      sessionStorage.getItem("assignedCategoriez") ||
+        JSON.stringify(initial.assignedCategoriez)
+    )
   );
   const [categoriezWhitelist, setCategoriezWhitelist] = useState<number[]>(
-    initial.categoriezWhitelist!
+    JSON.parse(
+      sessionStorage.getItem("categoriezWhitelist") ||
+        JSON.stringify(initial.categoriezWhitelist)
+    )
   );
   const [chosenCollection, setChosenCollection] = useState<Collection["id"][]>(
-    initial.chosenCollections!
+    JSON.parse(
+      sessionStorage.getItem("chosenCollection") ||
+        JSON.stringify(initial.chosenCollections!)
+    )
   );
+
+  // useEffect to prevent loss of game data when user reloads the page
+  useEffect(() => {
+    sessionStorage.setItem("gameStatus", JSON.stringify(gameStatus));
+  }, [gameStatus]);
+
+  useEffect(() => {
+    sessionStorage.setItem("currentPlayers", JSON.stringify(currentPlayers));
+  }, [currentPlayers]);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "chosenCollection",
+      JSON.stringify(chosenCollection)
+    );
+  }, [chosenCollection]);
+
+  useEffect(() => {
+    sessionStorage.setItem("inGameStatus", JSON.stringify(inGameStatus));
+  }, [inGameStatus]);
+
+  useEffect(() => {
+    sessionStorage.setItem("roundStatus", JSON.stringify(roundStatus));
+  }, [roundStatus]);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "assignedCategoriez",
+      JSON.stringify(assignedCategoriez)
+    );
+  }, [assignedCategoriez]);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      "categoriezWhitelist",
+      JSON.stringify(categoriezWhitelist)
+    );
+  }, [categoriezWhitelist]);
 
   return (
     <Context.Provider
