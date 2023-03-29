@@ -91,29 +91,32 @@ export default function CreateWords() {
           Categoriez anzeigen
         </Button>
       </Grid2>
-
       <Grid2 container my={3}>
         <Typography color={"inherit"} variant={"body1"} my={3} mr={5}>
           Category vergessen? Wähle deinen Spielernamen aus, um sie erneut
           anzeigen zu lassen.
         </Typography>
-        <FormControl>
-          <InputLabel>Spieler</InputLabel>
-          <Select
-            value={chosenPlayer.toString()}
-            label="Spieler"
-            placeholder={ctx.currentPlayers[0]}
-            onChange={(e) => setChosenPlayer(Number(e.target.value))}
-          >
-            {ctx.currentPlayers.map((p, index) => {
-              return (
-                <MenuItem value={index} key={index}>
-                  {p}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
+        {categoryShown === "hidden" ? (
+          <FormControl>
+            <InputLabel>Spieler</InputLabel>
+            <Select
+              value={chosenPlayer.toString()}
+              label="Spieler"
+              placeholder={ctx.currentPlayers[0]}
+              onChange={(e) => setChosenPlayer(Number(e.target.value))}
+            >
+              {ctx.currentPlayers.map((p, index) => {
+                return (
+                  <MenuItem value={index} key={index}>
+                    {p}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        ) : (
+          <></>
+        )}
       </Grid2>
       {categoryShown === "hidden" ? (
         <Grid2 container justifyContent={"center"}>
