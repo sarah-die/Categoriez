@@ -56,7 +56,6 @@ export default function RootAppBar() {
               <Typography
                 variant="h4"
                 noWrap
-                component="a"
                 sx={{
                   display: { xs: "flex" },
                   fontWeight: 700,

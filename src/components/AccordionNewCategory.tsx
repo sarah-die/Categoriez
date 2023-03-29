@@ -92,7 +92,7 @@ export const AccordionNewCategory = (props: {
               onChange={(e) => setSelectedCollection(e.target.value)}
             >
               {ctx.collections.map((c) => {
-                return <MenuItem value={c.name}>{c.name}</MenuItem>;
+                return <MenuItem key={c.id} value={c.name}>{c.name}</MenuItem>;
               })}
               <MenuItem value={"new"}>Neue Kollektion</MenuItem>
             </Select>

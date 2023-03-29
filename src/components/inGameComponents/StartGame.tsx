@@ -11,7 +11,6 @@ export default function StartGame() {
     const allCat: string[] = ctx.chosenCollections.flatMap(
       (colID) => ctx.collections.find((col) => col.id === colID)!.categoriez
     );
-    // ToDo korrekt?
     const whiteList: number[] = allCat.map((_, i) => i);
     ctx.currentPlayers.forEach((p, i) => {
       const random = Math.floor(Math.random() * whiteList.length);
@@ -47,12 +46,9 @@ export default function StartGame() {
       <Grid2 container flexDirection={"row"} spacing={5}>
         {ctx.currentPlayers.map((p, i) => {
           return (
-            <Grid2 my={1}>
-              <Typography key={i} p={1}>
-                Nr. {i + 1}:
-              </Typography>
+            <Grid2 key={p} my={1}>
+              <Typography p={1}>Nr. {i + 1}:</Typography>
               <Typography
-                key={i}
                 border={1}
                 borderColor={"black"}
                 borderRadius={2}

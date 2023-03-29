@@ -19,10 +19,10 @@ export default function Categoriez() {
           Diese Seite gibt euch eine Übersicht über existierende Kollektionen
           und deren Categoriez.
         </Typography>
-        <Grid container spacing={{ xs: 2, md: 3 }} p={3} >
+        <Grid container spacing={{ xs: 2, md: 3 }} p={3}>
           {ctx.collections.map((c) => {
             return (
-              <Grid item xs={12} md={6}>
+              <Grid item key={c.id} xs={12} md={6}>
                 <Box
                   sx={{
                     width: "100%",
@@ -46,7 +46,12 @@ export default function Categoriez() {
                   <Grid2 container>
                     {c.categoriez.map((cat) => {
                       return (
-                        <Typography color={"inherit"} variant={"body1"} mr={2}>
+                        <Typography
+                          key={cat}
+                          color={"inherit"}
+                          variant={"body1"}
+                          mr={2}
+                        >
                           {cat}
                         </Typography>
                       );

@@ -131,7 +131,7 @@ export const AccordionNewGame = (props: {
 
   useEffect(() => {
     checkPlayerNames();
-  }, []);
+  }, [ctx.currentPlayers]);
 
   return (
     <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
@@ -169,13 +169,13 @@ export const AccordionNewGame = (props: {
           {ctx.currentPlayers.map((p, i) => {
             return (
               <TextField
+                key={i}
                 required
                 label="Name"
                 placeholder={"Spieler " + (i + 1)}
                 sx={{ mr: 3, mb: 3 }}
                 value={ctx.currentPlayers[i]}
                 onChange={setPlayerNames(i)}
-                onBlur={checkPlayerNames}
               ></TextField>
             );
           })}

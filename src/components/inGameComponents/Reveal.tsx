@@ -36,7 +36,7 @@ export default function Reveal() {
         <Grid2 container flexDirection={"row"} spacing={3}>
           {ctx.assignedCategoriez.map((c, index) => {
             return (
-              <Grid2 sm={6} md={4} lg={3} xl={2}>
+              <Grid2 key={c} sm={6} md={4} lg={3} xl={2}>
                 <Typography p={1}>Nr. {index + 1}</Typography>
                 <Typography
                   border={1}
