@@ -1,7 +1,7 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Button, Typography } from "@mui/material";
 import { useGameContext } from "../../Context";
-import { useResetGame } from "../utils/ResetGame";
+import { useResetGame } from "../utils/useResetGame";
 
 /** This component displays all categories from the current game. */
 export default function Reveal() {
