@@ -13,7 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Collection, useGameContext } from "../Context";
@@ -128,6 +128,10 @@ export const AccordionNewGame = (props: {
       checkForEmptyNameFields();
     }
   };
+
+  useEffect(() => {
+    checkPlayerNames();
+  }, []);
 
   return (
     <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
