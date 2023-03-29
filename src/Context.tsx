@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { presetCollections } from "./components/presetCollections";
+import { useSaveDataToSessionStorage } from "./components/utils/useSaveDataToSessionStorage";
 
 // globally available props
 export type contextType = {
@@ -129,42 +130,13 @@ export const GameProvider = (props: { children: React.ReactNode }) => {
   );
 
   // useEffect to prevent loss of game data when user reloads the page
-  useEffect(() => {
-    sessionStorage.setItem("gameStatus", JSON.stringify(gameStatus));
-  }, [gameStatus]);
-
-  useEffect(() => {
-    sessionStorage.setItem("currentPlayers", JSON.stringify(currentPlayers));
-  }, [currentPlayers]);
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      "chosenCollection",
-      JSON.stringify(chosenCollection)
-    );
-  }, [chosenCollection]);
-
-  useEffect(() => {
-    sessionStorage.setItem("inGameStatus", JSON.stringify(inGameStatus));
-  }, [inGameStatus]);
-
-  useEffect(() => {
-    sessionStorage.setItem("roundStatus", JSON.stringify(roundStatus));
-  }, [roundStatus]);
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      "assignedCategoriez",
-      JSON.stringify(assignedCategoriez)
-    );
-  }, [assignedCategoriez]);
-
-  useEffect(() => {
-    sessionStorage.setItem(
-      "categoriezWhitelist",
-      JSON.stringify(categoriezWhitelist)
-    );
-  }, [categoriezWhitelist]);
+  useSaveDataToSessionStorage("gameStatus", gameStatus);
+  useSaveDataToSessionStorage("currentPlayers", currentPlayers);
+  useSaveDataToSessionStorage("chosenCollections", chosenCollection);
+  useSaveDataToSessionStorage("inGameStatus", inGameStatus);
+  useSaveDataToSessionStorage("roundStatus", roundStatus);
+  useSaveDataToSessionStorage("assignedCategoriez", assignedCategoriez);
+  useSaveDataToSessionStorage("categoriezWhitelist", categoriezWhitelist);
 
   return (
     <Context.Provider
