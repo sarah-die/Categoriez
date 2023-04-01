@@ -92,7 +92,11 @@ export const AccordionNewCategory = (props: {
               onChange={(e) => setSelectedCollection(e.target.value)}
             >
               {ctx.collections.map((c) => {
-                return <MenuItem key={c.id} value={c.name}>{c.name}</MenuItem>;
+                return (
+                  <MenuItem key={c.id} value={c.name}>
+                    {c.name}
+                  </MenuItem>
+                );
               })}
               <MenuItem value={"new"}>Neue Kollektion</MenuItem>
             </Select>
@@ -115,7 +119,7 @@ export const AccordionNewCategory = (props: {
         <Button
           variant={"contained"}
           size={"large"}
-          sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
+          sx={{ height: 50, fontSize: 22, m: 3 }}
           onClick={saveNewCategoryLocal}
         >
           Category hinzufügen

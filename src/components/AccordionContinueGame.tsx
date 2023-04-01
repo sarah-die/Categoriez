@@ -39,7 +39,7 @@ export const AccordionContinueGame = (props: {
           <Button
             variant={"contained"}
             size={"large"}
-            sx={{ height: 50, fontSize: 22, my: 3, color: "black" }}
+            sx={{ height: 50, fontSize: 22, my: 3 }}
             component={Link}
             to={"/inGame"}
           >
@@ -48,7 +48,7 @@ export const AccordionContinueGame = (props: {
           <Button
             variant={"contained"}
             size={"large"}
-            sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
+            sx={{ height: 50, fontSize: 22, m: 3 }}
             component={Link}
             to={"/"}
             onClick={() => {

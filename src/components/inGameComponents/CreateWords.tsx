@@ -85,7 +85,7 @@ export default function CreateWords() {
         <Button
           variant={"contained"}
           size={"large"}
-          sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
+          sx={{ height: 50, fontSize: 22, my: 2 }}
           onClick={() => revealCategoriez()}
         >
           Categoriez anzeigen
@@ -123,7 +123,7 @@ export default function CreateWords() {
           <Button
             variant={"contained"}
             size={"large"}
-            sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
+            sx={{ height: 50, fontSize: 22, my: 2 }}
             onClick={() => setCategoryShown("shown")}
           >
             Category anzeigen
@@ -141,7 +141,7 @@ export default function CreateWords() {
             <Button
               variant={"contained"}
               size={"large"}
-              sx={{ height: 50, fontSize: 22, my: 2, color: "black" }}
+              sx={{ height: 50, fontSize: 22, my: 2 }}
               onClick={() => setCategoryShown("hidden")}
             >
               Category verbergen

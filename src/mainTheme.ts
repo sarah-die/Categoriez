@@ -6,9 +6,10 @@ let theme = createTheme({
       paper: "#151b2d",
     },
     primary: {
-      light: "#5b6f9a",
-      main: "#4d5e84",
+      light: "#869bc7",
+      main: "#6f81a9",
       dark: "#3f4d6e",
+      contrastText: "#ced2dc",
     },
     secondary: {
       light: "#347154",
@@ -18,6 +19,9 @@ let theme = createTheme({
   },
   typography: {
     fontFamily: "IBM Plex Sans",
+    allVariants: {
+      color: "red",
+    },
     // ToDo add primary/ secondary colors
   },
 });
@@ -52,11 +56,7 @@ theme = createTheme(theme, {
   },
   button: {
     contained: {
-      color: "black",
       fontWeight: "bold",
-    },
-    outlined: {
-      color: "black",
     },
   },
 });

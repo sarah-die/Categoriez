@@ -235,7 +235,7 @@ export const AccordionNewGame = (props: {
         <Button
           variant={"contained"}
           size={"large"}
-          sx={{ height: 50, fontSize: 22, m: 3, color: "black" }}
+          sx={{ height: 50, fontSize: 22, m: 3 }}
           disabled={!playernameConditions}
           component={Link}
           to={"/inGame"}

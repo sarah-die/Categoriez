@@ -41,7 +41,7 @@ export default function StartNewRound() {
         <Button
           variant={"contained"}
           size={"large"}
-          sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
+          sx={{ height: 50, fontSize: 22, my: 1 }}
           onClick={() => assignCategoriez()}
         >
           Let's go

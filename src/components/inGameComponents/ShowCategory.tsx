@@ -46,7 +46,7 @@ function Hidden(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
         <Button
           variant={"contained"}
           size={"large"}
-          sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
+          sx={{ height: 50, fontSize: 22, my: 1 }}
           onClick={() => props.nextPlayer("shown")}
         >
           Kategorie anzeigen
@@ -81,7 +81,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
         <Button
           variant={"contained"}
           size={"large"}
-          sx={{ height: 50, fontSize: 22, my: 1, color: "black" }}
+          sx={{ height: 50, fontSize: 22, my: 1 }}
           onClick={() =>
             props.cur === ctx.currentPlayers.length - 1
               ? changeGameStatus()
