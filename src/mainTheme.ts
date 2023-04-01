@@ -11,11 +11,6 @@ let theme = createTheme({
       dark: "#3f4d6e",
       contrastText: "#ced2dc",
     },
-    secondary: {
-      light: "#347154",
-      main: "#24574C",
-      dark: "#143D45",
-    },
   },
   typography: {
     fontFamily: "IBM Plex Sans",
