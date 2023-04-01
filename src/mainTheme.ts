@@ -17,7 +17,15 @@ let theme = createTheme({
     allVariants: {
       color: "red",
     },
-    // ToDo add primary/ secondary colors
+  },
+  components: {
+    MuiSelect: {
+      styleOverrides: {
+        outlined: {
+          color: "#ced2dc",
+        },
+      },
+    },
   },
 });
 
@@ -49,6 +57,8 @@ theme = createTheme(theme, {
       fontWeight: "bold",
     },
   },
+  // text | outlined: Use the main color (e.g. primary.main) as the text color.
+  // contained: Use the contrastText color as the text color and main color as the background color.
   button: {
     contained: {
       fontWeight: "bold",
