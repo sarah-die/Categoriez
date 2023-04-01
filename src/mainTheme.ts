@@ -26,6 +26,13 @@ let theme = createTheme({
         },
       },
     },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          color: "#ced2dc",
+        },
+      },
+    },
   },
 });
 
