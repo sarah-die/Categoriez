@@ -13,7 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Collection, useGameContext } from "../Context";
@@ -25,7 +25,9 @@ export const AccordionNewGame = (props: {
   expanded: boolean;
   onChange: AccordionProps["onChange"];
 }) => {
+  // deconstructed ctx to have dependencies like "currentPlayer" and not the dependency on the context. So it does not always trigger, when the context changes
   const ctx = useGameContext();
+  const { currentPlayers, setSnackbarOpen } = ctx;
 
   // places text-fields to enter player names dependent on the number of players.
   // makes sure existing players are preserved when number of players is changed
@@ -39,23 +41,8 @@ export const AccordionNewGame = (props: {
 
   const [snackbarMessage, setSnackbarMessage] = useState<string>("Error");
 
-  const checkForEmptyNameFields = () => {
-    if (ctx.currentPlayers.some((p) => p === "")) {
-      setSnackbarMessage("Bitte tragt für jeden Spieler einen Namen ein.");
-      ctx.setSnackbarOpen(true);
-      return false;
-    } else if (ctx.currentPlayers.some((p) => p === " ")) {
-      setSnackbarMessage(
-        "Bitte stellt sicher, dass jeder Spielername mindestens ein Schriftzeichen enthält."
-      );
-      ctx.setSnackbarOpen(true);
-    } else {
-      return true;
-    }
-  };
-
-  const checkForNameDuplicates = () => {
-    const array: string[] = ctx.currentPlayers
+  const checkForNameDuplicates = useCallback(() => {
+    const array: string[] = currentPlayers
       .filter((p) => p !== "")
       .map((p) => p.toLowerCase());
 
@@ -64,20 +51,35 @@ export const AccordionNewGame = (props: {
       setSnackbarMessage(
         "Die Spielernamen müssen sich voneinander unterscheiden."
       );
-      ctx.setSnackbarOpen(true);
+      setSnackbarOpen(true);
       return false;
     } else {
       return true;
     }
-  };
+  }, [currentPlayers, setSnackbarOpen]);
 
-  const checkPlayerNames = () => {
+  const checkForEmptyNameFields = useCallback(() => {
+    if (currentPlayers.some((p) => p === "")) {
+      setSnackbarMessage("Bitte tragt für jeden Spieler einen Namen ein.");
+      setSnackbarOpen(true);
+      return false;
+    } else if (currentPlayers.some((p) => p === " ")) {
+      setSnackbarMessage(
+        "Bitte stellt sicher, dass jeder Spielername mindestens ein Schriftzeichen enthält."
+      );
+      setSnackbarOpen(true);
+    } else {
+      return true;
+    }
+  }, [currentPlayers, setSnackbarOpen]);
+
+  const checkPlayerNames = useCallback(() => {
     if (checkForEmptyNameFields() && checkForNameDuplicates()) {
       setPlayernameConditions(true);
     } else {
       setPlayernameConditions(false);
     }
-  };
+  }, [checkForNameDuplicates, checkForEmptyNameFields]);
 
   // adds the new name of a player to the existing list of players
   const setPlayerNames = (i: number) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -132,7 +134,6 @@ export const AccordionNewGame = (props: {
   useEffect(() => {
     checkPlayerNames();
   }, [ctx.currentPlayers, checkPlayerNames]);
-
 
   return (
     <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
