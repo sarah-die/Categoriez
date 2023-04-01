@@ -7,5 +7,5 @@ export const useSaveDataToSessionStorage = <T extends keyof contextType>(
 ) => {
   useEffect(() => {
     sessionStorage.setItem(dataKey, JSON.stringify(data));
-  }, [data]);
+  }, [dataKey, data]);
 };

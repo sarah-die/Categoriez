@@ -131,7 +131,8 @@ export const AccordionNewGame = (props: {
 
   useEffect(() => {
     checkPlayerNames();
-  }, [ctx.currentPlayers]);
+  }, [ctx.currentPlayers, checkPlayerNames]);
+
 
   return (
     <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
