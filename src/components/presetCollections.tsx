@@ -66,6 +66,7 @@ export const presetCollections: Collection[] = [
       //
       "Anderes Wort für 'Blähbauch'",
       "Anderes Wort für 'Tupperdose'",
+      "Anderes Wort für 'tollpatschig'",
     ],
   },
   {

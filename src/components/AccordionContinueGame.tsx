@@ -4,6 +4,7 @@ import {
   AccordionDetails,
   AccordionProps,
   AccordionSummary,
+  Box,
   Button,
   Typography,
 } from "@mui/material";
@@ -21,7 +22,10 @@ export const AccordionContinueGame = (props: {
   const ctx = useGameContext();
 
   return (
-    <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
+    <Accordion
+      sx={{ backgroundColor: "primary.dark", width: "100%", borderRadius: 1 }}
+      {...props}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -35,29 +39,27 @@ export const AccordionContinueGame = (props: {
         </Typography>
       </AccordionDetails>
       <AccordionActions>
-        <Grid2 container>
-          <Button
-            variant={"contained"}
-            size={"large"}
-            sx={{ height: 50, fontSize: 22, my: 3 }}
-            component={Link}
-            to={"/inGame"}
-          >
-            Spiel fortsetzen
-          </Button>
-          <Button
-            variant={"contained"}
-            size={"large"}
-            sx={{ height: 50, fontSize: 22, m: 3 }}
-            component={Link}
-            to={"/"}
-            onClick={() => {
-              ctx.setGameStatus("noCurrentGame");
-            }}
-          >
-            Kein Interesse
-          </Button>
-        </Grid2>
+        <Button
+          variant={"contained"}
+          size={"large"}
+          sx={{ height: 50, fontSize: 22, my: 3 }}
+          component={Link}
+          to={"/inGame"}
+        >
+          Spiel fortsetzen
+        </Button>
+        <Button
+          variant={"contained"}
+          size={"large"}
+          sx={{ height: 50, fontSize: 22, m: 3 }}
+          component={Link}
+          to={"/"}
+          onClick={() => {
+            ctx.setGameStatus("noCurrentGame");
+          }}
+        >
+          Kein Interesse
+        </Button>
       </AccordionActions>
     </Accordion>
   );

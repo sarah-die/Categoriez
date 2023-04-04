@@ -58,7 +58,10 @@ export const AccordionNewCategory = (props: {
   };
 
   return (
-    <Accordion sx={{ backgroundColor: "primary.dark" }} {...props}>
+    <Accordion
+      sx={{ backgroundColor: "primary.dark", width: "100%", borderRadius: 1 }}
+      {...props}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
