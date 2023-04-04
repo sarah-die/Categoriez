@@ -4,14 +4,12 @@ import {
   AccordionDetails,
   AccordionProps,
   AccordionSummary,
-  Box,
   Button,
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "react-router-dom";
 import React from "react";
-import Grid2 from "@mui/material/Unstable_Grid2";
 import { useGameContext } from "../Context";
 
 /** This accordion informs the player about a running game and gives the possibility to continue it. */
