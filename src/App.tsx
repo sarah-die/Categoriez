@@ -14,7 +14,11 @@ function App() {
       }}
     >
       <Grid2 container justifyContent={"center"}>
-        <Grid2 container width={{ xs: "100%", sm: "100%", md: "1400px" }}>
+        <Grid2
+          container
+          width={{ xs: "100%", sm: "100%", md: "1400px" }}
+          m={{ xs: 2, md: 4 }}
+        >
           <ControlledAccordion></ControlledAccordion>
         </Grid2>
       </Grid2>

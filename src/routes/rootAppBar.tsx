@@ -3,7 +3,6 @@ import {
   AppBar,
   Box,
   Button,
-  Container,
   IconButton,
   Menu,
   MenuItem,
@@ -13,6 +12,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { Outlet, useNavigate, Link as RouterLink } from "react-router-dom";
 import { Link } from "../components/utils/Link";
+import Grid2 from "@mui/material/Unstable_Grid2";
 
 type Page = { label: string; href: string };
 
@@ -50,93 +50,107 @@ export default function RootAppBar() {
     >
       <AppBar sx={{ backgroundColor: "background.paper" }}>
         {/*xs/md is necessary here to override the default media query padding of MUI*/}
-        <Container maxWidth={false} sx={{ px: { xs: 4, md: 11 } }}>
-          <Toolbar disableGutters>
-            <Link to="/">
-              <Typography
-                variant="h4"
-                noWrap
+        {/*<Container*/}
+        {/*  maxWidth={false}*/}
+        {/*  sx={{ border: 2, justifyContent: "center" }}*/}
+        {/*>*/}
+        <Grid2
+          container
+          justifyContent={"center"}
+        >
+          <Grid2
+            container
+            justifyContent={"space-between"}
+            width={{ xs: "100%", sm: "100%", md: "1400px" }}
+            mx={{ xs: 2, md: 4 }}
+          >
+            <Toolbar disableGutters>
+              <Link to="/">
+                <Typography
+                  variant="h4"
+                  noWrap
+                  sx={{
+                    display: { xs: "flex" },
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                >
+                  CATEGORIEZ
+                </Typography>
+              </Link>
+              <Box
                 sx={{
-                  display: { xs: "flex" },
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
+                  flexGrow: 1,
+                  display: { xs: "flex", md: "none" },
+                  justifyContent: "flex-end",
                 }}
               >
-                CATEGORIEZ
-              </Typography>
-            </Link>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", md: "none" },
-                justifyContent: "flex-end",
-              }}
-            >
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  {pages.map((page) => (
+                    <MenuItem
+                      key={page.label}
+                      onClick={handleCloseNavMenu(page.href)}
+                    >
+                      <Typography textAlign="center" variant={"h6"}>
+                        {page.label}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+              <Box
+                id={"AppBar ButtonGroup"}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                  justifyContent: "flex-end",
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem
+                  <Button
                     key={page.label}
-                    onClick={handleCloseNavMenu(page.href)}
+                    sx={{ my: 2, color: "#ced2dc", display: "block" }}
+                    size={"large"}
+                    component={RouterLink}
+                    to={page.href}
                   >
-                    <Typography textAlign="center" variant={"h6"}>
-                      {page.label}
-                    </Typography>
-                  </MenuItem>
+                    {page.label}
+                  </Button>
                 ))}
-              </Menu>
-            </Box>
-
-            <Box
-              id={"AppBar ButtonGroup"}
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "flex" },
-                justifyContent: "flex-end",
-              }}
-            >
-              {pages.map((page) => (
-                <Button
-                  key={page.label}
-                  sx={{ my: 2, color: "#ced2dc", display: "block" }}
-                  size={"large"}
-                  component={RouterLink}
-                  to={page.href}
-                >
-                  {page.label}
-                </Button>
-              ))}
-            </Box>
-          </Toolbar>
-        </Container>
+              </Box>
+            </Toolbar>
+          </Grid2>
+        </Grid2>
+        {/*</Container>*/}
       </AppBar>
       <Box
         sx={{

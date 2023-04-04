@@ -14,7 +14,7 @@ export default function ControlledAccordion() {
       setExpanded(isExpanded ? panel : false);
     };
   return (
-    <Grid2 container m={{ xs: 2, md: 4 }} gap={{ xs: 2, md: 4 }}>
+    <Grid2 container rowGap={{ xs: 2, md: 4 }}>
       {ctx.gameStatus === "noCurrentGame" ? (
         <></>
       ) : (
