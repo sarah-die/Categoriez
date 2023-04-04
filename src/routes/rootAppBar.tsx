@@ -54,17 +54,13 @@ export default function RootAppBar() {
         {/*  maxWidth={false}*/}
         {/*  sx={{ border: 2, justifyContent: "center" }}*/}
         {/*>*/}
-        <Grid2
-          container
-          justifyContent={"center"}
-        >
+        <Grid2 container justifyContent={"center"}>
           <Grid2
             container
-            justifyContent={"space-between"}
             width={{ xs: "100%", sm: "100%", md: "1400px" }}
             mx={{ xs: 2, md: 4 }}
           >
-            <Toolbar disableGutters>
+            <Toolbar disableGutters sx={{ width: "100%" }}>
               <Link to="/">
                 <Typography
                   variant="h4"
