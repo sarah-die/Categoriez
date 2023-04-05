@@ -4,16 +4,16 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 /** This component includes general information about the website. */
 export default function About() {
   return (
-    <Grid2 container>
-      <Grid2
-        xs={12}
-        m={{ xs: 2, md: 9 }}
-        sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
-      >
-        <Typography color={"inherit"} variant={"body2"} m={3}>
+    <Grid2
+      container
+      xs={12}
+      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
+    >
+      <Grid2 container p={3} gap={2} flexDirection={"column"}>
+        <Typography color={"inherit"} variant={"body2"}>
           About
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} m={3}>
+        <Typography color={"inherit"} variant={"body1"}>
           Liebe Besucher! Ich habe diese Website als Übung für mich erstellt, um
           meine Kenntnisse der Frontend-Entwicklung zu vertiefen. Diese Website
           dient keinen kommerziellen Zwecken und ist ein privates Projekt, was

@@ -6,20 +6,20 @@ import { useGameContext } from "../Context";
 export default function Categoriez() {
   const ctx = useGameContext();
   return (
-    <Grid2 container>
-      <Grid2
-        xs={12}
-        m={{ xs: 2, md: 9 }}
-        sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
-      >
-        <Typography color={"inherit"} variant={"body2"} m={3}>
+    <Grid2
+      container
+      xs={12}
+      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
+    >
+      <Grid2 container p={3} gap={2} flexDirection={"column"}>
+        <Typography color={"inherit"} variant={"body2"} >
           Categoriez
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} m={3}>
+        <Typography color={"inherit"} variant={"body1"} >
           Diese Seite gibt euch eine Übersicht über existierende Kollektionen
           und deren Categoriez.
         </Typography>
-        <Grid container spacing={{ xs: 2, md: 3 }} p={3}>
+        <Grid container spacing={{ xs: 2, md: 3 }} >
           {ctx.collections.map((c) => {
             return (
               <Grid item key={c.id} xs={12} md={6}>

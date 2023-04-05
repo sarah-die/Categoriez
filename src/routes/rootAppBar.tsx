@@ -49,11 +49,6 @@ export default function RootAppBar() {
       }}
     >
       <AppBar sx={{ backgroundColor: "background.paper" }}>
-        {/*xs/md is necessary here to override the default media query padding of MUI*/}
-        {/*<Container*/}
-        {/*  maxWidth={false}*/}
-        {/*  sx={{ border: 2, justifyContent: "center" }}*/}
-        {/*>*/}
         <Grid2 container justifyContent={"center"}>
           <Grid2
             container
@@ -146,7 +141,6 @@ export default function RootAppBar() {
             </Toolbar>
           </Grid2>
         </Grid2>
-        {/*</Container>*/}
       </AppBar>
       <Box
         sx={{
@@ -156,7 +150,25 @@ export default function RootAppBar() {
           overflowX: "none",
         }}
       >
-        <Outlet />
+        <Box
+          sx={{
+            height: "100vh",
+            width: "100vw",
+            overflowY: "scroll",
+            backgroundColor: "background.paper",
+          }}
+        >
+          <Grid2 container justifyContent={"center"}>
+            <Grid2
+              container
+              width={{ xs: "100%", sm: "100%", md: "1400px" }}
+              m={{ xs: 2, md: 4 }}
+            >
+              <Outlet />
+            </Grid2>
+          </Grid2>
+          <Box p={4}></Box>
+        </Box>
       </Box>
     </Box>
   );

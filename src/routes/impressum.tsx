@@ -3,25 +3,25 @@ import { Typography } from "@mui/material";
 
 export default function Impressum() {
   return (
-    <Grid2 container>
-      <Grid2
-        xs={12}
-        m={{ xs: 2, md: 9 }}
-        sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
-      >
-        <Typography color={"inherit"} variant={"body2"} m={3}>
+    <Grid2
+      container
+      xs={12}
+      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
+    >
+      <Grid2 container p={3} gap={2} flexDirection={"column"}>
+        <Typography color={"inherit"} variant={"body2"}>
           Impressum
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} m={3}>
+        <Typography color={"inherit"} variant={"body1"}>
           Impressum gem. § 5 TMG
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} m={3}>
+        <Typography color={"inherit"} variant={"body1"}>
           Sarah Diethert
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} m={3} fontWeight={600}>
+        <Typography color={"inherit"} variant={"body1"} fontWeight={600}>
           Kontakt:
         </Typography>
-        <Typography color={"inherit"} variant={"body1"} m={3}>
+        <Typography color={"inherit"} variant={"body1"}>
           https://github.com/sarah-die
         </Typography>
       </Grid2>
