@@ -1,5 +1,5 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useGameContext } from "../../Context";
 import { useResetGame } from "../utils/useResetGame";
 
@@ -17,7 +17,7 @@ export default function Reveal() {
   };
 
   return (
-    <Grid2>
+    <Box>
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Hier sind eure Categoriez. Nehmt euch nun die Zeit zu erraten wer welche
         Category gelegt hat. Wertet anschließend, vom Startspieler dieser Runde
@@ -30,7 +30,7 @@ export default function Reveal() {
         ) beginnend aus, ob ihr richtig getippt habt oder nicht. Verteilt
         entsprechend Punkte mit Hilfe der Punkte-Chips.
       </Typography>
-      <Grid2 container flexDirection={"row"} spacing={3}>
+      <Grid2 container flexDirection={"row"} spacing={1}>
         {ctx.assignedCategoriez.map((c, index) => {
           return (
             <Grid2 key={c} sm={6} md={4} lg={3} xl={2}>
@@ -39,7 +39,7 @@ export default function Reveal() {
                 border={1}
                 borderColor={"black"}
                 borderRadius={2}
-                px={2}
+                px={1}
                 py={1}
               >
                 {c}
@@ -48,7 +48,7 @@ export default function Reveal() {
           );
         })}
       </Grid2>
-      <Typography color={"inherit"} variant={"body1"}>
+      <Typography color={"inherit"} variant={"body1"} my={2}>
         Alle Punkte verteilt?
       </Typography>
       <Grid2 container justifyContent={"center"}>
@@ -72,6 +72,6 @@ export default function Reveal() {
           </Button>
         )}
       </Grid2>
-    </Grid2>
+    </Box>
   );
 }

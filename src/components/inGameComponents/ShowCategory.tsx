@@ -1,7 +1,7 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useGameContext } from "../../Context";
 import { useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 type CatStatus = "hidden" | "shown";
 let cur: number = 0;
@@ -31,18 +31,23 @@ function Hidden(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
   const ctx = useGameContext();
   return (
     <Grid2 container flexDirection={"column"}>
-      <Typography color={"inherit"} variant={"body1"} my={1}>
-        Hey {ctx.currentPlayers[props.cur]}, bist du bereit für deine Kategorie?
-      </Typography>
+      <Grid2>
+        <Typography color={"inherit"} variant={"body1"} my={1}>
+          Hey {ctx.currentPlayers[props.cur]}, bist du bereit für deine
+          Kategorie?
+        </Typography>
+      </Grid2>
       <Grid2 container justifyContent={"center"}>
-        <Button
-          variant={"contained"}
-          size={"large"}
-          sx={{ height: 50, fontSize: 22, my: 1 }}
-          onClick={() => props.nextPlayer("shown")}
-        >
-          Kategorie anzeigen
-        </Button>
+        <Grid2>
+          <Button
+            variant={"contained"}
+            size={"large"}
+            sx={{ height: 50, fontSize: 22, my: 1 }}
+            onClick={() => props.nextPlayer("shown")}
+          >
+            Kategorie anzeigen
+          </Button>
+        </Grid2>
       </Grid2>
     </Grid2>
   );
@@ -55,21 +60,28 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
     ctx.setInGameStatus("createWords");
   };
   return (
-    <Grid2 container flexDirection={"column"}>
+    <Grid2 flexDirection={"column"}>
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Deine Category ist:
       </Typography>
-      <Typography
-        color={"inherit"}
+      <Box
         p={1}
-        variant={"body2"}
         my={1}
         border={2}
         borderColor={"#869bc7"}
         borderRadius={2}
+        // component="span"
+        display={"inline-block"}
       >
-        {ctx.assignedCategoriez[props.cur]}
-      </Typography>
+        <Typography color={"inherit"} variant={"body2"}>
+          {ctx.assignedCategoriez[props.cur]}
+        </Typography>
+      </Box>
+
+      {/*<div style={{ borderRadius: 2, border: 2, borderColor: "black", display: "inline" }}>*/}
+      {/*  <p>{ctx.assignedCategoriez[props.cur]}</p>*/}
+      {/*</div>*/}
+
       {props.cur === ctx.currentPlayers.length - 1 ? (
         <></>
       ) : (
@@ -89,7 +101,7 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
           }
         >
           {props.cur === ctx.currentPlayers.length - 1
-            ? "Let's create some Krazy Wordz"
+            ? "Let's go"
             : "Nächster Spieler"}
         </Button>
       </Grid2>
