@@ -21,15 +21,7 @@ export default function ShowCategory() {
 
   const props = { nextPlayer, cur };
   return (
-    <Grid2
-      container
-      rowSpacing={1}
-      xs={12}
-      m={{ xs: 2, md: 9 }}
-      p={4}
-      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
-      flexDirection={"column"}
-    >
+    <Grid2>
       {catStatus === "hidden" ? <Hidden {...props} /> : <Shown {...props} />}
     </Grid2>
   );
@@ -67,7 +59,15 @@ function Shown(props: { nextPlayer: (next: CatStatus) => void; cur: number }) {
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Deine Category ist:
       </Typography>
-      <Typography color={"inherit"} variant={"body2"} my={1}>
+      <Typography
+        color={"inherit"}
+        p={1}
+        variant={"body2"}
+        my={1}
+        border={2}
+        borderColor={"#869bc7"}
+        borderRadius={2}
+      >
         {ctx.assignedCategoriez[props.cur]}
       </Typography>
       {props.cur === ctx.currentPlayers.length - 1 ? (

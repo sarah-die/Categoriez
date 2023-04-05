@@ -10,8 +10,20 @@ import MainPage from "../MainPage";
 /** What this component renders depends on the inGameStatus. According to this "StartGame", "ShowCategory", "CreateWords" or "Reveal" are shown. */
 export default function InGame() {
   return (
-    <Grid2 container>
-      <InnerInGame />
+    <Grid2
+      container
+      xs={12}
+      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
+    >
+      <Grid2
+        container
+        xs={12}
+        p={3}
+        gap={2}
+        flexDirection={"column"}
+      >
+        <InnerInGame />
+      </Grid2>
     </Grid2>
   );
 }

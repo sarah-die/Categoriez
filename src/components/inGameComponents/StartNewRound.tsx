@@ -24,14 +24,7 @@ export default function StartNewRound() {
   };
 
   return (
-    <Grid2
-      container
-      xs={12}
-      m={{ xs: 2, md: 9 }}
-      p={4}
-      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
-      flexDirection={"column"}
-    >
+    <Grid2>
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Ihr seid nun in Runde {ctx.roundStatus.indexOf(0) + 1}. Wenn ihr bereit
         für eure neuen Kategorien seid, startet die neue Runde mit Klick auf den

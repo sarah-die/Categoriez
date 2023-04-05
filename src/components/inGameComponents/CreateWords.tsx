@@ -68,15 +68,7 @@ export default function CreateWords() {
   };
 
   return (
-    <Grid2
-      container
-      rowSpacing={1}
-      xs={12}
-      m={{ xs: 2, md: 9 }}
-      p={4}
-      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
-      flexDirection={"column"}
-    >
+    <Grid2>
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Ihr habt nun Zeit eure "Krazy Wordz" zu legen. Wenn alle Spieler damit
         fertig sind, drückt den Knopf.
@@ -88,7 +80,7 @@ export default function CreateWords() {
           sx={{ height: 50, fontSize: 22, my: 2 }}
           onClick={() => revealCategoriez()}
         >
-          Categoriez anzeigen
+          Weiter geht's!
         </Button>
       </Grid2>
       <Grid2 container my={3}>

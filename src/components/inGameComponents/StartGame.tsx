@@ -23,14 +23,7 @@ export default function StartGame() {
   };
 
   return (
-    <Grid2
-      container
-      xs={12}
-      m={{ xs: 2, md: 9 }}
-      p={4}
-      sx={{ backgroundColor: "primary.dark", borderRadius: 2 }}
-      flexDirection={"column"}
-    >
+    <Grid2>
       <Typography color={"inherit"} variant={"body1"} my={1}>
         Willkommen in Runde 1!
       </Typography>
