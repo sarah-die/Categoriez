@@ -5,7 +5,7 @@ import ShowCategory from "../components/inGameComponents/ShowCategory";
 import CreateWords from "../components/inGameComponents/CreateWords";
 import Reveal from "../components/inGameComponents/Reveal";
 import StartNewRound from "../components/inGameComponents/StartNewRound";
-import App from "../App";
+import MainPage from "../MainPage";
 
 /** What this component renders depends on the inGameStatus. According to this "StartGame", "ShowCategory", "CreateWords" or "Reveal" are shown. */
 export default function InGame() {
@@ -32,6 +32,6 @@ const InnerInGame = () => {
       return <StartNewRound />;
     }
   } else {
-    return <App />;
+    return <MainPage />;
   }
 };

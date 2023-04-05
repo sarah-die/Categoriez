@@ -1,12 +1,12 @@
-import Grid2 from "@mui/material/Unstable_Grid2";
-import { AccordionNewGame } from "./AccordionNewGame";
-import { AccordionNewCategory } from "./AccordionNewCategory";
+import { useGameContext } from "./Context";
 import React, { useState } from "react";
-import { useGameContext } from "../Context";
-import { AccordionContinueGame } from "./AccordionContinueGame";
+import Grid2 from "@mui/material/Unstable_Grid2";
+import { AccordionContinueGame } from "./components/AccordionContinueGame";
+import { AccordionNewGame } from "./components/AccordionNewGame";
+import { AccordionNewCategory } from "./components/AccordionNewCategory";
 
-/** Component that includes three Accordions (Continue Game, Start new Game, Add new Category). Only one Accordion is open at a time. */
-export default function ControlledAccordion() {
+/** The main component, which is displayed in the root-route. */
+export default function MainPage() {
   const ctx = useGameContext();
   const [expanded, setExpanded] = useState<String | false>(false);
   const handleAccordionChange =

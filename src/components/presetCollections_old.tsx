@@ -155,7 +155,7 @@ export const presetCollections_old: Collection[] = [
       "Französisches Liebeslied",
       "Neuartige Suchmaschine",
       "Toilettenpapier-Marke",
-      "Flirt-App",
+      "Flirt-MainPage",
       "Marke für Babywindeln",
       "Neuer Streaming-Anbieter",
       "TV-Quiz",

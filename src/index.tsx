@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import MainPage from "./MainPage";
 import reportWebVitals from "./reportWebVitals";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { mainTheme } from "./mainTheme";
@@ -28,7 +28,7 @@ const router = createHashRouter([
         children: [
           {
             index: true,
-            element: <App />,
+            element: <MainPage />,
           },
           {
             path: "ruleBook",
