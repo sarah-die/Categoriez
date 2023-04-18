@@ -20,6 +20,7 @@ import { Collection, useGameContext } from "../Context";
 import { useNavigate } from "react-router-dom";
 import { CustomSnackbar } from "./utils/CustomSnackbar";
 import { useCheckGameConditions } from "./utils/useCheckGameConditions";
+import { MultiSelect } from "./utils/MulitSelect";
 
 /** This component is for starting a new game. For this purpose, the number of players is set, as well as the names of the players. */
 export const AccordionNewGame = (props: {
@@ -105,11 +106,11 @@ export const AccordionNewGame = (props: {
           <InputLabel>Kollektionen</InputLabel>
           <Select
             label="Kollektionen"
+            multiple
             value={ctx.chosenCollections}
             onChange={(e) => {
               ctx.setChosenCollections(e.target.value as Collection["id"][]);
             }}
-            multiple
           >
             {ctx.collections.map((col) => {
               return (
@@ -120,6 +121,15 @@ export const AccordionNewGame = (props: {
             })}
           </Select>
         </FormControl>
+        <MultiSelect
+          items={ctx.collections}
+          label={"test"}
+          placeholder={"test"}
+          // selectAllLabel={}
+          noOptionsText={"test"}
+          limitTags={3}
+          onChange={console.log()}
+        />
         <Typography variant={"body1"} sx={{ mt: 3, mb: 3 }}>
           Setzt nun die Anzahl an Runden, die ihr spielen wollt. Das Maximum
           sind 10 Runden. Standardmäßig werden 6 Runden gespielt.
