@@ -1,5 +1,6 @@
 import { contextType } from "../../Context";
 
+/** Functions checks all conditions regarding new categoriez the user wants to add. **/
 export const checkConditionsForNewCat = (
   trimmedNewCat: string,
   trimmedNewCol: string,

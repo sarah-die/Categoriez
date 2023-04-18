@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useGameContext } from "../../Context";
 
-/** Functions checks all conditions that need to be fulfilled before players can start a new game. **/
+/** Hook checks all conditions that need to be fulfilled before players can start a new game. **/
 export const useCheckGameConditions = () => {
   const ctx = useGameContext();
   const { currentPlayers, setSnackbarMessage, setSnackbarOpen } = ctx;
