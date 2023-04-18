@@ -13,12 +13,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Collection, useGameContext } from "../Context";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CustomSnackbar } from "./utils/CustomSnackbar";
+import { useCheckGameConditions } from "./utils/useCheckGameConditions";
 
 /** This component is for starting a new game. For this purpose, the number of players is set, as well as the names of the players. */
 export const AccordionNewGame = (props: {
@@ -27,7 +28,8 @@ export const AccordionNewGame = (props: {
 }) => {
   // deconstructed ctx to have dependencies like "currentPlayer" and not the dependency on the context. So it does not always trigger, when the context changes
   const ctx = useGameContext();
-  const { currentPlayers, setSnackbarOpen } = ctx;
+  const { checkGameConditions } = useCheckGameConditions();
+  const navigate = useNavigate();
 
   // places text-fields to enter player names dependent on the number of players.
   // makes sure existing players are preserved when number of players is changed
@@ -36,104 +38,12 @@ export const AccordionNewGame = (props: {
     ctx.setPlayers(newPlayers.slice(0, Number(e.target.value)));
   };
 
-  const [playernameConditions, setPlayernameConditions] =
-    useState<boolean>(false);
-
-  const [snackbarMessage, setSnackbarMessage] = useState<string>("Error");
-
-  const checkForNameDuplicates = useCallback(() => {
-    const array: string[] = currentPlayers
-      .filter((p) => p !== "")
-      .map((p) => p.toLowerCase());
-
-    const setFromArray = new Set(array);
-    if (array.length !== setFromArray.size) {
-      setSnackbarMessage(
-        "Die Spielernamen müssen sich voneinander unterscheiden."
-      );
-      setSnackbarOpen(true);
-      return false;
-    } else {
-      return true;
-    }
-  }, [currentPlayers, setSnackbarOpen]);
-
-  const checkForEmptyNameFields = useCallback(() => {
-    if (currentPlayers.some((p) => p === "")) {
-      setSnackbarMessage("Bitte tragt für jeden Spieler einen Namen ein.");
-      setSnackbarOpen(true);
-      return false;
-    } else if (currentPlayers.some((p) => p === " ")) {
-      setSnackbarMessage(
-        "Bitte stellt sicher, dass jeder Spielername mindestens ein Schriftzeichen enthält."
-      );
-      setSnackbarOpen(true);
-    } else {
-      return true;
-    }
-  }, [currentPlayers, setSnackbarOpen]);
-
-  const checkPlayerNames = useCallback(() => {
-    if (checkForEmptyNameFields() && checkForNameDuplicates()) {
-      setPlayernameConditions(true);
-    } else {
-      setPlayernameConditions(false);
-    }
-  }, [checkForNameDuplicates, checkForEmptyNameFields]);
-
   // adds the new name of a player to the existing list of players
   const setPlayerNames = (i: number) => (e: ChangeEvent<HTMLInputElement>) => {
     const newPlayers = [...ctx.currentPlayers];
     newPlayers[i] = e.target.value;
     ctx.setPlayers(newPlayers);
   };
-
-  const checkAmountOfCategoriez = () => {
-    const numberOfCategoriez: number = ctx.chosenCollections
-      .map(
-        (colID) =>
-          ctx.collections.find((col) => col.id === colID)!.categoriez.length
-      )
-      .reduce((acc, cur) => acc + cur);
-    const numberOfPlayers: number = ctx.currentPlayers.length;
-    const numberOfRounds: number = ctx.roundStatus.length;
-    let necessaryNumberOfCategoriez: number;
-
-    if (numberOfPlayers <= 6) {
-      necessaryNumberOfCategoriez = 6;
-    } else if (numberOfPlayers <= 7) {
-      necessaryNumberOfCategoriez = 7;
-    } else {
-      necessaryNumberOfCategoriez = 8;
-    }
-
-    if (numberOfCategoriez < necessaryNumberOfCategoriez * numberOfRounds) {
-      setSnackbarMessage(
-        "Die Kollektion, die ihr gewählt habt, enthält leider nicht genug Categoriez. Wählt eine andere oder reduziert die Anzahl an Spielern oder Runden."
-      );
-      ctx.setSnackbarOpen(true);
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const setStatus = () => {
-    if (playernameConditions) {
-      if (checkAmountOfCategoriez()) {
-        return;
-      }
-      ctx.setGameStatus("ongoing");
-      ctx.setInGameStatus("start");
-    } else {
-      checkForNameDuplicates();
-      checkForEmptyNameFields();
-    }
-  };
-
-  useEffect(() => {
-    checkPlayerNames();
-  }, [ctx.currentPlayers, checkPlayerNames]);
 
   return (
     <Accordion
@@ -241,16 +151,17 @@ export const AccordionNewGame = (props: {
           variant={"contained"}
           size={"large"}
           sx={{ height: 50, fontSize: 22, m: 3 }}
-          disabled={!playernameConditions}
-          component={Link}
-          to={"/inGame"}
           onClick={() => {
-            setStatus();
+            if (checkGameConditions()) {
+              ctx.setGameStatus("ongoing");
+              ctx.setInGameStatus("start");
+              navigate("/inGame");
+            }
           }}
         >
           Let's go!
         </Button>
-        <CustomSnackbar message={snackbarMessage}></CustomSnackbar>
+        <CustomSnackbar message={ctx.snackbarMessage}></CustomSnackbar>
       </AccordionActions>
     </Accordion>
   );
