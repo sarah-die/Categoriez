@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useGameContext } from "../../Context";
 
-/** Customized Snackbar to inform the user over errors. The shown message is variable. */
+/** Customized Snackbar to inform the user about errors. The displayed message is variable. */
 export const CustomSnackbar = (props: {
   message: string;
   customColor?: string;
@@ -40,9 +40,9 @@ export const CustomSnackbar = (props: {
         {...props}
         open={ctx.snackbarStatus}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        autoHideDuration={5000}
+        autoHideDuration={2000}
         TransitionComponent={Slide}
-        transitionDuration={{ enter: 300, exit: 2000 }}
+        transitionDuration={{ enter: 300, exit: 1000 }}
         TransitionProps={{ enter: true, exit: true }}
         onClose={handleClose}
         action={action}
