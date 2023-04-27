@@ -1,46 +1,23 @@
-# Getting Started with Create React MainPage
+## Categoriez
 
-This project was bootstrapped with [Create React MainPage](https://github.com/facebook/create-react-app).
+Dear visitors, I started this project for two reasons:
 
-## Available Scripts
+1. To deepen and improve my React and TypeScript knowledge.
+2. Because "Krazy Wordz" is really fun, but unfortunately 
+the categories in the board game repeat themselves too fast. 
+This can be changed by this project: There are new categories 
+and new ones can be added by you, you friends and family 
+at any time.
 
-In the project directory, you can run:
+Have fun trying it out! :)
 
-### `npm start`
+### View the website here:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://sarah-die.github.io/Categoriez/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+### Future plans
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React MainPage documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I would like to add the feature that categories can be downloaded 
+and uploaded. This will allow you to share your collections of 
+ideas with friends.
